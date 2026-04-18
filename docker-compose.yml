@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    restart: always
+    ports:
+      - "8000:80"
+    volumes:
+      - ./:/var/www/html/
+    depends_on:
+      - mysql
+  mysql:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: superspeed_cms
+    ports:
+      - "3307:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    environment:
+      PMA_HOST: mysql
+      PMA_USER: root
+      PMA_PASSWORD: root
+      UPLOAD_LIMIT: 50M
+    ports:
+      - "8080:80"
+    depends_on:
+      - mysql
+
+volumes:
+  db_data:
