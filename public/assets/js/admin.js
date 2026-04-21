@@ -60,7 +60,7 @@
             contentHtml = `
                 <h3 style="margin-top:0;color:#f97316">Edit Text</h3>
                 <p style="font-size:0.75rem;color:#94a3b8">MSGID: ${msgid}</p>
-                <textarea id="popup-content" style="width:100%;height:120px;background:#0f172a;color:#fff;border:1px solid #334155;border-radius:0.5rem;padding:0.75rem;font-family:inherit;margin-bottom:1rem">${el.innerText}</textarea>
+                <textarea id="popup-content" style="width:100%;height:120px;background:#0f172a;color:#fff;border:1px solid #334155;border-radius:0.5rem;padding:0.75rem;font-family:inherit;margin-bottom:1rem">${el.innerHTML}</textarea>
             `;
         } else if (imgid || vidid) {
             const type = imgid ? 'image' : 'video';
@@ -99,7 +99,6 @@
     async function handleSave(el, msgid, mediaId) {
         const btn = document.getElementById('popup-save');
         const status = document.getElementById('popup-status');
-        const iframeWin = iframe.contentWindow;
         
         btn.disabled = true;
         btn.innerText = 'Saving...';
@@ -120,15 +119,18 @@
 
                 response = await fetch('/update_text.php', { method: 'POST', body: fd });
                 if (response.ok) {
-                    // LIVE UPDATE TEXT IN IFRAME
-                    el.innerText = content;
+                    // LIVE UPDATE TEXT IN IFRAME AS HTML
+                    el.innerHTML = content;
                     showToast('Text updated successfully!');
                     removePopup();
+                } else {
+                    const resJson = await response.json();
+                    throw new Error(resJson.error || 'Failed to save');
                 }
             } else if (mediaId) {
                 const fileInput = document.getElementById('popup-file');
                 if (!fileInput.files[0]) {
-                    throw new Exception("Please select a file.");
+                    throw new Error("Please select a file.");
                 }
 
                 const fd = new FormData();

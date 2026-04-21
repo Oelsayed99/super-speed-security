@@ -1,49 +1,155 @@
+-- CMS Initialization Script
+-- Optimized for Super Speed BRAND IDENTITY
+
 SET NAMES utf8mb4;
-CREATE DATABASE IF NOT EXISTS `superspeed_cms` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-USE `superspeed_cms`;
 
-CREATE TABLE IF NOT EXISTS `users` (
-    `id` INT AUTO_INCREMENT PRIMARY KEY,
-    `username` VARCHAR(50) NOT NULL UNIQUE,
-    `password_hash` VARCHAR(255) NOT NULL,
-    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+-- Users Table
+CREATE TABLE IF NOT EXISTS users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) UNIQUE NOT NULL,
+    password_hash VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS `translations` (
-    `msgid` VARCHAR(100) PRIMARY KEY,
-    `value_en` TEXT NULL,
-    `value_ar` TEXT NULL,
-    `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+-- Insert default admin (password: password)
+INSERT IGNORE INTO users (username, password_hash) 
+VALUES ('admin', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi');
+
+-- Translations Table
+CREATE TABLE IF NOT EXISTS translations (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    msgid VARCHAR(100) NOT NULL,
+    value_en TEXT,
+    value_ar TEXT,
+    UNIQUE KEY (msgid)
 );
 
-CREATE TABLE IF NOT EXISTS `media` (
-    `media_id` VARCHAR(100) PRIMARY KEY,
-    `type` ENUM('image', 'video') NOT NULL,
-    `src` TEXT NULL,
-    `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+-- Media Table
+CREATE TABLE IF NOT EXISTS media (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    media_id VARCHAR(100) NOT NULL,
+    type ENUM('image', 'video') NOT NULL,
+    src TEXT,
+    UNIQUE KEY (media_id)
 );
 
--- Insert default admin user (password is 'password')
-INSERT IGNORE INTO `users` (`username`, `password_hash`) VALUES ('admin', '$2y$10$GZ6wZThIKdHFrCO3q9E0ruwadm/VpzNiIaKan1Ff2n1mxnP7ox2QW');
-
--- Initial Translations
-INSERT INTO translations (msgid, value_en, value_ar) VALUES 
-('hero-title', 'Next-Generation Security, Lightning Fast.', 'حماية الجيل القادم بسرعة فائقة'),
-('hero-desc', 'A custom CMS that prioritizes extreme performance and ironclad security. Monitor content natively with pure execution speed.', 'نظام إدارة محتوى مخصص يعطي الأولوية للأداء الفائق والأمان الحديدي.'),
-('footer-text', 'Super Speed Security CMS. All rights reserved.', 'نظام حماية بسرعة فائقة. جميع الحقوق محفوظة.'),
+-- Seed Data (Super Speed Content)
+TRUNCATE TABLE translations;
+INSERT INTO translations (msgid, value_en, value_ar) VALUES
+('site-title', 'Super Speed | Security & Logistics', 'Super Speed | Security & Logistics'),
+('site-name', 'Super Speed', 'Super Speed'),
 ('nav-home', 'Home', 'الرئيسية'),
-('nav-features', 'Features', 'المميزات'),
-('site-logo', 'Super Speed Security', 'نظام الحماية الفائق'),
-('btn-login', 'Admin Login', 'دخول المشرف'),
-('btn-hero', 'Start Managing', 'ابدأ الآن'),
-('feature-1-title', 'Secure by Default', 'آمن افتراضياً'),
-('feature-1-desc', 'Ironclad PDO-based protection against all modern threats.', 'حماية حديدية مبنية على PDO ضد جميع التهديدات الحديثة.'),
-('feature-2-title', 'Lightning Fast', 'سرعة البرق'),
-('feature-2-desc', 'Zero framework overhead for maximum pure PHP speed.', 'بدون أعباء أطر العمل للحصول على أقصى سرعة PHP نقية.'),
-('feature-3-title', 'Live Editing', 'تحرير مباشر'),
-('feature-3-desc', 'What you see is what you get, updated in real-time.', 'ما تراه هو ما تحصل عليه، يتم تحديثه في الوقت الفعلي.');
+('nav-about', 'About', 'من نحن'),
+('nav-services', 'Services', 'الخدمات'),
+('nav-clients', 'Clients', 'العملاء'),
+('nav-contact', 'Contact', 'اتصل بنا'),
+('hero-title', 'Your Safety. Our Mission.', 'أمانكم... مهمتنا'),
+('hero-title-ar', 'أمانكم... مهمتنا', 'أمانكم... مهمتنا'),
+('hero-desc', 'Professional Security & Cash in Transit Services', 'خدمات أمن ونقل أموال باحترافية عالية'),
+('hero-desc-ar', 'خدمات أمن ونقل أموال باحترافية عالية', 'خدمات أمن ونقل أموال باحترافية عالية'),
+('btn-services', 'Our Services', 'خدماتنا'),
+('btn-services-ar', 'خدماتنا', 'خدماتنا'),
+('btn-contact', 'Contact Us', 'تواصل معنا'),
+('btn-contact-ar', 'تواصل معنا', 'تواصل معنا'),
+('badge-elite', 'Elite Security', 'الأمن النخبوي'),
+('home-intro-title', 'The Standard of <span class="text-primary">Excellence.</span>', 'معيار <span class="text-primary">التميز.</span>'),
+('home-intro-desc', 'We redefine the security landscape with precision, integrity, and unparalleled rapid response capabilities.', 'نحن نعيد تعريف المشهد الأمني بدقة ونزاهة وقدرات استجابة سريعة لا مثيل لها.'),
+('btn-learn-more', 'Learn More', 'تعرف علينا'),
+('home-floating-text', 'Super Speed response in critical moments.', 'استجابة سوبر سبيد في اللحظات الحرجة.'),
+('precision-title', 'Precision in Protection', 'الدقة في الحماية'),
+('precision-desc', 'Super Speed is a company specialized in providing comprehensive security solutions and secure logistics.', 'سوبر سبيد هي شركة متخصصة في تقديم الحلول الأمنية المتكاملة والخدمات اللوجستية الآمنة.'),
+('precision-desc-ar', 'سوبر سبيد هي شركة متخصصة في تقديم الحلول الأمنية المتكاملة والخدمات اللوجستية الآمنة.', 'سوبر سبيد هي شركة متخصصة في تقديم الحلول الأمنية المتكاملة والخدمات اللوجستية الآمنة.'),
+('bento-title', 'The Sovereign Standard', 'المعيار السيادي'),
+('bento-subtitle', 'Why industry leaders choose Super Speed', 'لماذا يختار قادة الصناعة Super Speed'),
+('point-1-title', 'Professional Trained Staff', 'طاقم مدرب باحترافية'),
+('point-1-desc', 'Our personnel undergo rigorous tactical training.', 'يخضع موظفونا لتدريبات تكتيكية صارمة.'),
+('point-1-ar', 'طاقم مدرب باحترافية عالية', 'طاقم مدرب باحترافية عالية'),
+('point-2-title', 'Rapid Response', 'استجابة سريعة'),
+('point-2-desc', 'Emergency units ready 24/7.', 'وحدات الطوارئ جاهزة على مدار الساعة.'),
+('point-2-ar', 'استجابة سريعة للطوارئ', 'استجابة سريعة للطوارئ'),
+('point-3-title', 'Reliable & Consistent', 'موثوقية واستمرارية'),
+('point-3-desc', 'Consistency is the foundation of trust.', 'الاستمرارية هي أساس الثقة.'),
+('point-3-ar', 'خدمة موثوقة ومستمرة', 'خدمة موظوقة ومستمرة'),
+('trusted-by-label', 'Trusted By', 'موثوق من قبل'),
+('trusted-by-title', 'The Financial Backbone of the Region', 'العمود الفقري المالي للمنطقة'),
+('cta-title', 'Secure Your Business Today', 'أمن عملك اليوم'),
+('cta-desc', 'Partner with Super Speed Security for the ultimate peace of mind.', 'شارك Super Speed للأمن لتحصل على راحة بال مطلقة.'),
+('btn-consult', 'Request a Consultation', 'طلب استشارة'),
+('footer-bio', 'Pioneering secure logistics and tactical protection for the digital age.', 'رائد اللوجستيات الآمنة والحماية التكتيكية للعصر الرقمي.'),
+('hq-address', '1105 Almas Tower, JLT Dubai, United Arab Emirates', '١١٠٥ برج الماس، جي إل تي دبي، الإمارات العربية المتحدة'),
+('footer-rights', 'All rights reserved.', 'جميع الحقوق محفوظة.'),
+('services-badge', 'Elite Protection Services', 'خدمات حماية النخبة'),
+('services-hero-title', 'Architectural <br/><span class="text-transparent bg-clip-text brand-gradient">Vault of Security</span>', 'قبو معماري <br/><span class="text-transparent bg-clip-text brand-gradient">للأمان</span>'),
+('services-hero-desc', 'Merging high-stakes security precision with elite logistical fluidity.', 'دمج دقة الأمن مع المرونة اللوجستية النخبوية.'),
+('sec-services-title', 'Security Services', 'خدمات الأمن'),
+('sec-services-desc', 'Advanced protection frameworks managed by elite personnel.', 'أطر حماية متقدمة يديرها موظفون نخبة.'),
+('sec-services-title-ar', 'خدمات الأمن', 'خدمات الأمن'),
+('sec-services-desc-ar', 'نخبة الكوادر الأمنية لحماية المنشآت والشخصيات الهامة.', 'نخبة الكوادر الأمنية لحماية المنشآت والشخصيات الهامة.'),
+('svc-1-title', 'Trained Personnel', 'كوادر مدربة'),
+('svc-1-desc', 'Our agents undergo rigorous tactical training.', 'يخضع عملاؤنا لتدريبات تكتيكية صارمة.'),
+('svc-1-ar', 'كوادر مدربة', 'كوادر مدربة'),
+('svc-2-title', 'Armed/Unarmed Guards', 'حراس أمن مسلحين'),
+('svc-2-desc', 'Strategic deployment of protection units.', 'النشر الاستراتيجي لوحدات الحماية.'),
+('svc-2-ar', 'حراس أمن مسلحين', 'حراس أمن مسلحين'),
+('svc-3-title', 'VIP Protection', 'حماية كبار الشخصيات'),
+('svc-3-desc', 'Discreet protection for executives and diplomats.', 'حماية سرية للمسؤولين والدبلوماسيين.'),
+('svc-3-ar', 'حماية كبار الشخصيات', 'حماية كبار الشخصيات'),
+('cash-transit-title', 'Cash in Transit', 'نقل الأموال'),
+('cash-transit-desc', 'Secure logistics for high-value assets.', 'لوجستيات آمنة للأصول عالية القيمة.'),
+('cash-transit-title-ar', 'نقل الأموال', 'نقل الأموال'),
+('cash-transit-desc-ar', 'حلول لوجستية آمنة لنقل الأصول والمبالغ النقدية.', 'حلول لوجستية آمنة لنقل الأصول والمبالغ النقدية.'),
+('cash-svc-1', 'Secure Transport', 'النقل الآمن'),
+('cash-svc-1-desc', 'GPS tracking and biometric authorization.', 'تتبع نظام تحديد المواقع وتفويض القياسات الحيوية.'),
+('cash-svc-2', 'Asset Management', 'إدارة الأصول'),
+('cash-svc-2-desc', 'Full-cycle ATM and vault management.', 'إدارة كاملة للصرافات الآلية والخزائن.'),
+('about-badge', 'Established Excellence', 'تميز ملموس'),
+('about-title', 'Redefining Protection.', 'إعادة تعريف الحماية.'),
+('about-title-ar', 'نحن نعيد تعريف الحماية', 'نحن نعيد تعريف الحماية'),
+('about-quote', '"In an era of evolving threats, Super Speed stands as a monolithic guardian."', '"في عصر التهديدات المتطورة، Super Speed تقف كحارس عملاق."'),
+('about-ov-label', 'Company Overview', 'نظرة عامة على الشركة'),
+('about-ov-desc', 'Super Speed is a premier editorial-level security firm headquartered in the financial district.', 'Super Speed هي شركة أمنية من الدرجة الأولى يقع مقرها الرئيسي في الحي المالي.'),
+('value-1-title', 'Uncompromising Integrity', 'نزاهة لا تلين'),
+('value-1-desc', 'Deeply embedded in our tactical DNA.', 'متجذرة بعمق في حمضنا النووي التكتيكي.'),
+('value-2-title', 'Rapid Response', 'استجابة سريعة'),
+('value-2-desc', 'Kinetic deployment at scale.', 'نشر حركي على نطاق واسع.'),
+('directives-title', 'Our Core Directives', 'توجهاتنا الأساسية'),
+('directives-title-ar', 'توجهاتنا الأساسية', 'توجهاتنا الأساسية'),
+('dir-1-title', 'Our Mission', 'مهمتنا'),
+('dir-1-desc', 'To create invisible layers of absolute security.', 'لخلق طبقات غير مرئية من الأمان المطلق.'),
+('dir-2-title', 'Strategic Precision', 'الدقة الاستراتيجية'),
+('dir-2-desc', 'Anticipating threats before they manifest.', 'تنبؤ التهديدات قبل ظهورها.'),
+('dir-3-title', 'Technological Superiority', 'التفوق التكنولوجي'),
+('dir-3-desc', 'Integrating neural-network defense systems.', 'دمج أنظمة الدفاع القائمة على الشبكات العصبية.'),
+('clients-title', 'Fortifying Global Leaders.', 'تحصين رواد العالم.'),
+('clients-title-ar', 'تحصين رواد العالم', 'تحصين رواد العالم'),
+('clients-desc', 'Trusted by multinational corporations to provide uncompromising security and lightning-fast tactical responses.', 'موثوق من قبل الشركات المتعددة الجنسيات لتقديم أمن لا يلين واستجابات تكتيكية سريعة.'),
+('test-1-text', '"Super Speed provides a level of certainty that is essential for our global operations."', '"توفر Super Speed مستوى من اليقين الضروري لعملياتنا العالمية."'),
+('test-1-name', 'Alexander Sterling', 'ألكسندر ستيرلينغ'),
+('test-1-pos', 'CSO, Global FinTech', 'مسؤول الأمن، فينتك العالمية'),
+('test-2-text', '"The transition was seamless. Their tactical response time is unmatched in the Middle East."', '"كان الانتقال سلساً. وقت استجابتهم التكتيكية لا يعلى عليه في الشرق الأوسط."'),
+('test-2-name', 'Hassan Al-Mansoori', 'حسن المنصوري'),
+('test-2-pos', 'Director, AD Logistics', 'مدير العمليات، لوجستيات أبوظبي'),
+('roster-label', 'Corporate Roster', 'قائمة الشركات'),
+('contact-title', 'Secure Your Perimeter.', 'أمن حدودك.'),
+('contact-title-ar', 'اتصل بنا للحصول على الأمان', 'اتصل بنا للحصول على الأمان'),
+('contact-desc', 'Our elite tactical response teams are standing by 24/7.', 'فرق الاستجابة التكتيكية النخبوية لدينا في وضع الاستعداد ٢٤/٧.'),
+('contact-hq-label', 'Global Headquarters', 'المقر العالمي'),
+('contact-hq-val', '1104 Almas Tower, JLT Dubai', '١١٠٤ برج الماس، دبي'),
+('contact-tel-label', 'Tactical Support', 'الدعم التكتيكي'),
+('contact-tel-val', '+971 4 555 0199', '+٩٧١ ٤ ٥٥٥ ٠١٩٩'),
+('contact-form-title', 'Initiate Inquiry', 'ابدأ الاستفسار'),
+('contact-form-ar', 'ارسل لنا رسالة وسنقوم بالرد فوراً', 'ارسل لنا رسالة وسنقوم بالرد فوراً'),
+('contact-form-placeholder', 'Secure messaging portal encrypted. Please contact ops directly for tactical emergencies.', 'بوابة الرسائل الآمنة مشفرة. يرجى الاتصال بالعمليات مباشرة لحالات الطوارئ.'),
+('btn-send-inquiry', 'SEND SECURE MESSAGE', 'إرسال رسالة آمنة');
 
--- Initial Media
-INSERT INTO media (media_id, type, src) VALUES 
-('img-hero', 'image', '/storage/uploads/images/media_69e2b3d7085e7.jpeg'),
-('vid-intro', 'video', '');
+-- Seed Media Data (Updated with New Logo)
+TRUNCATE TABLE media;
+INSERT INTO media (media_id, type, src) VALUES
+('site-logo', 'image', '/assets/img/logo.png'),
+('footer-logo', 'image', '/assets/img/logo.png'),
+('hero-video', 'video', 'https://storage.googleapis.com/a1aa/video/security_ops.mp4'),
+('home-intro-img', 'image', 'https://lh3.googleusercontent.com/aida-public/AB6AXuC3ROGwaR3PESoP_ZEp_Tfl_FZKUYui1LKWaToPKsvKilhNd6Aq71m3gN8LzmIAK8fDahsVcVYgZBcX8h7eoLrdCfp7c8weCIAMT_gtzrpirt72uuuqSw_9nPIpQAkZuQKm211euHfemu4Kt0lOktN7FSzXVVil8QPzoEApS-ZPkENI_LfzcBvJCFuehIWvuOf12f0xRzV1xFvjx-npIPAJFBg_u4D0rHg09F8nEhhhRtIUisZlK97hrKThgIPbPI0eYRP5Wu3fjg'),
+('services-hero-img', 'image', 'https://lh3.googleusercontent.com/aida-public/AB6AXuBQg3RqQdhESMvsjLtr-4TyDj4-F_kAZOb-p3cmU5y9a2PGK43CZLp1lpkfSObnx-daQeyE4TJ7pJoh808A7qGI9dDZp1VMaWK08zvCICHHxL5Azx-evtUqGa3jUCdPIjv85eOL89GzhOxgYvMGQ9l2S8VV7K_3plFTbc564LfDjEGFibsHberInxHDAseWgSo6mdFQ64gESB4hxyzi5uxQvMF0AlXl7AaDLJwqIzFG3YtWwAUFo5A1NTz9Oct2WXrL1IXDwpav9w'),
+('svc-personnel-img', 'image', 'https://lh3.googleusercontent.com/aida-public/AB6AXuBasnTwbiRSUwt5xxuyI5JoFbyiyJQ4oFpDkQXGpbx2X_X0fyKYbkmsd005r_GAKTtQJbzNlLtHcr1Mg0UuTzsEXWREGGMhbtSi3ekHCSlU_mm5TisKbQpOg7svct4_jmFNo4veyqf7DyRnJNVu-kbXqAVSxiamniSlUdhTg_EN8hQdht-2GxU1dKVfs6fEneqxoJYop8fZbqOWA6pLZQOJvegJH0PqUFQcaOZVQjcR8zkGvQuXv3aYvlnnQgOJ_p6mD-M6R5pyng'),
+('svc-guards-img', 'image', 'https://lh3.googleusercontent.com/aida-public/AB6AXuD7K1bnRD_UUAKAO3d99lAg5538Uw0-QOde81JSdFe5_z8hPbbG0DF1eiNp99WH5q6fIvbwcJdiw98e8DbEKskbMav8kvw7e0_TKpOCBdT0774sVlr_3SCgJA-CJrNl63jFuTVh4P8EdL8nWdnfGUqEBlCxLiX1dSPV0xenXTSUXrzwfmZLWWEAo2R1MDA9XP9JIt7kUWNC8rpEMLyQDI1-8COZ-848ghapDOyTK769SIgT1HusHMtjkiH7xAhPYAkqGp72R1qLKA'),
+('svc-vip-img', 'image', 'https://lh3.googleusercontent.com/aida-public/AB6AXuDszmKyIO9yATRZ4xEJuBJEXMrdT34ZvsjGhbm-8VzS2JMqpy0C1uyjCDMP7_U7Zt37HymvuIt30bnjY_tYl2V137013MWqruDcl-mn9OVv1qeIvA66Cd0K3PXJQes3z6I_9hMBPuUxPggDM4rneW6Y9zk2W0gwaDVceCM8mWDbmCRDUazJM8Q6yfsYVPH0awCetNyhfayDfs9aSNfNT6UlSDkA5YDPDvuCacU4yMHNPQYuoJ5vBhcOThcaGcx8GLxZ2-roC7CI1A'),
+('about-img', 'image', 'https://lh3.googleusercontent.com/aida-public/AB6AXuCwyizrGEvN3rQiJLWwkQbXhcWJolH2tONEIzc6teokXymObiGDMAsZkwECDPXPdSXLaYJri4tCUubOSwEAdTFIgQronv3fT29sJpX8KxxFKV67g_QB5ZpPLjIfED4d59pc7eC2VF0P6yXUQCCKPjvrbQ58zddlavz-JDmOw6w1dAd2KDJk5x0pES1QHBV4dPq0E43FNxyCeXiR4GRghwlQsL1z46__s6tQcofmn69er9KlK40IPrgxF7z20G_uSuJgbbBwSCZBBw');

@@ -8,6 +8,9 @@ if (!isset($_SESSION['admin_logged_in'])) {
 
 require_once __DIR__ . '/../app/Storage.php';
 
+use App\Storage;
+use Exception;
+
 header('Content-Type: application/json');
 
 try {

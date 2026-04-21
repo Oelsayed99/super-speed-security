@@ -1,80 +1,43 @@
 <?php
-// public/index.php
-// Directly load our translation engine
-$t = require __DIR__ . '/../app/Translation.php';
+/**
+ * CMS Main Entry Point
+ * -------------------
+ * This file handles routing and dynamic content injection.
+ */
 
-// Check intended language, fallback to en
+// Initialize session and config
+session_start();
+require_once __DIR__ . '/../app/Database.php';
+require_once __DIR__ . '/../app/Translation.php';
+require_once __DIR__ . '/../app/Storage.php';
+require_once __DIR__ . '/../app/helpers.php'; // Include the wrapper helpers
+
+use App\Translation;
+
+// Configuration
 $lang = $_GET['lang'] ?? 'en';
+$page = $_GET['page'] ?? 'home';
+$isAdmin = isset($_GET['admin']) && $_GET['admin'] == '1';
 
-// Admin flag for inline editing
-$isAdmin = isset($_GET['admin']) && $_GET['admin'] == 1;
+// Validate allowed pages
+$allowed_pages = ['home', 'services', 'about', 'clients', 'contact'];
+if (!in_array($page, $allowed_pages)) {
+    $page = 'home';
+}
 
-// CSS Versioning to force cache refresh
-$cssVer = "1.5";
-?>
-<!DOCTYPE html>
-<html lang="<?= htmlspecialchars($lang) ?>" dir="<?= $lang === 'ar' ? 'rtl' : 'ltr' ?>">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Super Speed Security - Home</title>
-    <link rel="stylesheet" href="/assets/css/style.css?v=<?= $cssVer ?>">
-</head>
-<body class="frontend-body">
-    <header class="frontend-header">
-        <div class="container">
-            <nav>
-                <a href="/" class="logo"><?= $t('site-logo', 'text', $lang) ?></a>
-                <div class="nav-links">
-                    <a href="/"><?= $t('nav-home', 'text', $lang) ?></a>
-                    <a href="#features"><?= $t('nav-features', 'text', $lang) ?></a>
-                    <?php if ($isAdmin): ?>
-                        <span class="edit-mode-badge">EDIT MODE</span>
-                    <?php else: ?>
-                        <a href="/login.php" class="btn"><?= $t('btn-login', 'text', $lang) ?></a>
-                    <?php endif; ?>
-                </div>
-            </nav>
-        </div>
-    </header>
+// Ensure language session consistency if needed
+$_SESSION['lang'] = $lang;
 
-    <main class="frontend-main">
-        <div class="container hero">
-            <h1><?= $t('hero-title', 'text', $lang) ?></h1>
-            <p><?= $t('hero-desc', 'text', $lang) ?></p>
-            
-            <div class="hero-spacer">
-                <a href="/login.php" class="btn hero-large-btn"><?= $t('btn-hero', 'text', $lang) ?></a>
-            </div>
+// Load Layout
+require_once __DIR__ . '/includes/header.php';
 
-            <div class="hero-media-wrapper">
-                <img <?= $t('img-hero', 'image') ?> class="hero-img-full">
-            </div>
-            
-            <div class="card-grid" id="features">
-                <div class="card">
-                    <div class="card-icon">🛡️</div>
-                    <h3><?= $t('feature-1-title', 'text', $lang) ?></h3>
-                    <p><?= $t('feature-1-desc', 'text', $lang) ?></p>
-                </div>
-                <div class="card">
-                    <div class="card-icon">⚡</div>
-                    <h3><?= $t('feature-2-title', 'text', $lang) ?></h3>
-                    <p><?= $t('feature-2-desc', 'text', $lang) ?></p>
-                </div>
-                <div class="card">
-                    <div class="card-icon">🎨</div>
-                    <h3><?= $t('feature-3-title', 'text', $lang) ?></h3>
-                    <p><?= $t('feature-3-desc', 'text', $lang) ?></p>
-                </div>
-            </div>
-        </div>
-    </main>
+// Load Page Content
+$page_file = __DIR__ . "/pages/{$page}.php";
+if (file_exists($page_file)) {
+    include $page_file;
+} else {
+    echo "<section class='py-24 text-center'><h1 class='text-4xl font-bold'>Page Not Found</h1></section>";
+}
 
-    <footer class="frontend-footer">
-        <div class="container">
-            <p>&copy; <?= date('Y') ?> <?= $t('footer-text', 'text', $lang) ?></p>
-        </div>
-    </footer>
-</body>
-</html>
+// Load Footer
+require_once __DIR__ . '/includes/footer.php';

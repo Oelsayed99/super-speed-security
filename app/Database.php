@@ -1,5 +1,8 @@
 <?php
-// app/Database.php
+namespace App;
+
+use PDO;
+use Exception;
 
 class Database {
     private static $instance = null;

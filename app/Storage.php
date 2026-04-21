@@ -1,9 +1,11 @@
 <?php
-// app/Storage.php
+namespace App;
+
+use App\Database;
+use Exception;
 
 class Storage {
     public static function updateText($msgid, $lang, $value) {
-        require_once __DIR__ . '/Database.php';
         $pdo = Database::getInstance()->getConnection();
         
         $col = $lang === 'ar' ? 'value_ar' : 'value_en';
@@ -17,7 +19,6 @@ class Storage {
     }
 
     public static function updateMedia($mediaId, $src) {
-        require_once __DIR__ . '/Database.php';
         $pdo = Database::getInstance()->getConnection();
 
         // 1. Determine media type from ID (convention: img- or vid-)
@@ -31,7 +32,7 @@ class Storage {
         if ($old && strpos($old, '/storage/uploads/') === 0) {
             $oldFile = __DIR__ . '/../public' . $old;
             if (file_exists($oldFile)) {
-                unlink($oldFile);
+                @unlink($oldFile);
             }
         }
 
