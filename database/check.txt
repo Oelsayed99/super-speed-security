@@ -1,0 +1,100 @@
+﻿-- CMS Initialization Script
+-- Optimized for Fortress Security Editorial Design
+
+SET NAMES utf8mb4;
+
+-- Users Table
+CREATE TABLE IF NOT EXISTS users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) UNIQUE NOT NULL,
+    password_hash VARCHAR(255) NOT NULL
+);
+
+-- Insert default admin (password: password)
+INSERT IGNORE INTO users (username, password_hash) 
+VALUES ('admin', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi');
+
+-- Translations Table
+CREATE TABLE IF NOT EXISTS translations (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    msgid VARCHAR(100) NOT NULL,
+    value_en TEXT,
+    value_ar TEXT,
+    UNIQUE KEY (msgid)
+);
+
+-- Media Table
+CREATE TABLE IF NOT EXISTS media (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    media_id VARCHAR(100) NOT NULL,
+    type ENUM('image', 'video') NOT NULL,
+    src TEXT,
+    UNIQUE KEY (media_id)
+);
+
+-- Seed Data (Stitch Project Content)
+TRUNCATE TABLE translations;
+INSERT INTO translations (msgid, value_en, value_ar) VALUES
+('site-title', 'FORTRESS | Elite Security & Logistics', 'ÙÙˆØ±ØªØ±ÙŠØ³ | Ø®Ø¯Ù…Ø§Øª Ø§Ù„Ø£Ù…Ù† ÙˆØ§Ù„Ù„ÙˆØ¬Ø³ØªÙŠØ§Øª Ø§Ù„Ù†Ø®Ø¨ÙˆÙŠØ©'),
+('site-name', 'FORTRESS', 'ÙÙˆØ±ØªØ±ÙŠØ³'),
+('nav-home', 'Home', 'Ø§Ù„Ø±Ø¦ÙŠØ³ÙŠØ©'),
+('nav-about', 'About', 'Ù…Ù† Ù†Ø­Ù†'),
+('nav-services', 'Services', 'Ø§Ù„Ø®Ø¯Ù…Ø§Øª'),
+('nav-clients', 'Clients', 'Ø§Ù„Ø¹Ù…Ù„Ø§Ø¡'),
+('nav-contact', 'Contact', 'Ø§ØªØµÙ„ Ø¨Ù†Ø§'),
+('hero-title', 'Your Safety. Our Mission.', 'Ø£Ù…Ø§Ù†ÙƒÙ…... Ù…Ù‡Ù…ØªÙ†Ø§'),
+('hero-title-ar', 'Ø£Ù…Ø§Ù†ÙƒÙ…... Ù…Ù‡Ù…ØªÙ†Ø§', 'Ø£Ù…Ø§Ù†ÙƒÙ…... Ù…Ù‡Ù…ØªÙ†Ø§'),
+('hero-desc', 'Professional Security & Cash in Transit Services', 'Ø®Ø¯Ù…Ø§Øª Ø£Ù…Ù† ÙˆÙ†Ù‚Ù„ Ø£Ù…ÙˆØ§Ù„ Ø¨Ø§Ø­ØªØ±Ø§ÙÙŠØ© Ø¹Ø§Ù„ÙŠØ©'),
+('hero-desc-ar', 'Ø®Ø¯Ù…Ø§Øª Ø£Ù…Ù† ÙˆÙ†Ù‚Ù„ Ø£Ù…ÙˆØ§Ù„ Ø¨Ø§Ø­ØªØ±Ø§ÙÙŠØ© Ø¹Ø§Ù„ÙŠØ©', 'Ø®Ø¯Ù…Ø§Øª Ø£Ù…Ù† ÙˆÙ†Ù‚Ù„ Ø£Ù…ÙˆØ§Ù„ Ø¨Ø§Ø­ØªØ±Ø§ÙÙŠØ© Ø¹Ø§Ù„ÙŠØ©'),
+('btn-services', 'Our Services', 'Ø®Ø¯Ù…Ø§ØªÙ†Ø§'),
+('btn-services-ar', 'Ø®Ø¯Ù…Ø§ØªÙ†Ø§', 'Ø®Ø¯Ù…Ø§ØªÙ†Ø§'),
+('btn-contact', 'Contact Us', 'ØªÙˆØ§ØµÙ„ Ù…Ø¹Ù†Ø§'),
+('btn-contact-ar', 'ØªÙˆØ§ØµÙ„ Ù…Ø¹Ù†Ø§', 'ØªÙˆØ§ØµÙ„ Ù…Ø¹Ù†Ø§'),
+('badge-elite', 'Elite Security', 'Ø§Ù„Ø£Ù…Ù† Ø§Ù„Ù†Ø®Ø¨ÙˆÙŠ'),
+('home-intro-title', 'The Standard of <span class="text-primary">Excellence.</span>', 'Ù…Ø¹ÙŠØ§Ø± <span class="text-primary">Ø§Ù„ØªÙ…ÙŠØ².</span>'),
+('home-intro-desc', 'We redefine the security landscape with precision, integrity, and unparalleled rapid response capabilities.', 'Ù†Ø­Ù† Ù†Ø¹ÙŠØ¯ ØªØ¹Ø±ÙŠÙ Ø§Ù„Ù…Ø´Ù‡Ø¯ Ø§Ù„Ø£Ù…Ù†ÙŠ Ø¨Ø¯Ù‚Ø© ÙˆÙ†Ø²Ø§Ù‡Ø© ÙˆÙ‚Ø¯Ø±Ø§Øª Ø§Ø³ØªØ¬Ø§Ø¨Ø© Ø³Ø±ÙŠØ¹Ø© Ù„Ø§ Ù…Ø«ÙŠÙ„ Ù„Ù‡Ø§.'),
+('btn-learn-more', 'Learn More', 'ØªØ¹Ø±Ù Ø¹Ù„ÙŠÙ†Ø§'),
+('home-floating-text', 'Super Speed response in critical moments.', 'Ø§Ø³ØªØ¬Ø§Ø¨Ø© Ø³ÙˆØ¨Ø± Ø³Ø¨ÙŠØ¯ ÙÙŠ Ø§Ù„Ù„Ø­Ø¸Ø§Øª Ø§Ù„Ø­Ø±Ø¬Ø©.'),
+('precision-title', 'Precision in Protection', 'Ø§Ù„Ø¯Ù‚Ø© ÙÙŠ Ø§Ù„Ø­Ù…Ø§ÙŠØ©'),
+('precision-desc', 'Superspeed is a company specialized in providing comprehensive security solutions and secure logistics.', 'Ø³ÙˆØ¨Ø± Ø³Ø¨ÙŠØ¯ Ù‡ÙŠ Ø´Ø±ÙƒØ© Ù…ØªØ®ØµØµØ© ÙÙŠ ØªÙ‚Ø¯ÙŠÙ… Ø§Ù„Ø­Ù„ÙˆÙ„ Ø§Ù„Ø£Ù…Ù†ÙŠØ© Ø§Ù„Ù…ØªÙƒØ§Ù…Ù„Ø© ÙˆØ§Ù„Ø®Ø¯Ù…Ø§Øª Ø§Ù„Ù„ÙˆØ¬Ø³ØªÙŠØ© Ø§Ù„Ø¢Ù…Ù†Ø©.'),
+('precision-desc-ar', 'Ø³ÙˆØ¨Ø± Ø³Ø¨ÙŠØ¯ Ù‡ÙŠ Ø´Ø±ÙƒØ© Ù…ØªØ®ØµØµØ© ÙÙŠ ØªÙ‚Ø¯ÙŠÙ… Ø§Ù„Ø­Ù„ÙˆÙ„ Ø§Ù„Ø£Ù…Ù†ÙŠØ© Ø§Ù„Ù…ØªÙƒØ§Ù…Ù„Ø© ÙˆØ§Ù„Ø®Ø¯Ù…Ø§Øª Ø§Ù„Ù„ÙˆØ¬Ø³ØªÙŠØ© Ø§Ù„Ø¢Ù…Ù†Ø©.', 'Ø³ÙˆØ¨Ø± Ø³Ø¨ÙŠØ¯ Ù‡ÙŠ Ø´Ø±ÙƒØ© Ù…ØªØ®ØµØµØ© ÙÙŠ ØªÙ‚Ø¯ÙŠÙ… Ø§Ù„Ø­Ù„ÙˆÙ„ Ø§Ù„Ø£Ù…Ù†ÙŠØ© Ø§Ù„Ù…ØªÙƒØ§Ù…Ù„Ø© ÙˆØ§Ù„Ø®Ø¯Ù…Ø§Øª Ø§Ù„Ù„ÙˆØ¬Ø³ØªÙŠØ© Ø§Ù„Ø¢Ù…Ù†Ø©.'),
+('bento-title', 'The Sovereign Standard', 'Ø§Ù„Ù…Ø¹ÙŠØ§Ø± Ø§Ù„Ø³ÙŠØ§Ø¯ÙŠ'),
+('bento-subtitle', 'Why industry leaders choose FORTRESS', 'Ù„Ù…Ø§Ø°Ø§ ÙŠØ®ØªØ§Ø± Ù‚Ø§Ø¯Ø© Ø§Ù„ØµÙ†Ø§Ø¹Ø© ÙÙˆØ±ØªØ±ÙŠØ³'),
+('point-1-title', 'Professional Trained Staff', 'Ø·Ø§Ù‚Ù… Ù…Ø¯Ø±Ø¨ Ø¨Ø§Ø­ØªØ±Ø§ÙÙŠØ©'),
+('point-1-desc', 'Our personnel undergo rigorous tactical training.', 'ÙŠØ®Ø¶Ø¹ Ù…ÙˆØ¸ÙÙˆÙ†Ø§ Ù„ØªØ¯Ø±ÙŠØ¨Ø§Øª ØªÙƒØªÙŠÙƒÙŠØ© ØµØ§Ø±Ù…Ø©.'),
+('point-1-ar', 'Ø·Ø§Ù‚Ù… Ù…Ø¯Ø±Ø¨ Ø¨Ø§Ø­ØªØ±Ø§ÙÙŠØ© Ø¹Ø§Ù„ÙŠØ©', 'Ø·Ø§Ù‚Ù… Ù…Ø¯Ø±Ø¨ Ø¨Ø§Ø­ØªØ±Ø§ÙÙŠØ© Ø¹Ø§Ù„ÙŠØ©'),
+('point-2-title', 'Rapid Response', 'Ø§Ø³ØªØ¬Ø§Ø¨Ø© Ø³Ø±ÙŠØ¹Ø©'),
+('point-2-desc', 'Emergency units ready 24/7.', 'ÙˆØ­Ø¯Ø§Øª Ø§Ù„Ø·ÙˆØ§Ø±Ø¦ Ø¬Ø§Ù‡Ø²Ø© Ø¹Ù„Ù‰ Ù…Ø¯Ø§Ø± Ø§Ù„Ø³Ø§Ø¹Ø©.'),
+('point-2-ar', 'Ø§Ø³ØªØ¬Ø§Ø¨Ø© Ø³Ø±ÙŠØ¹Ø© Ù„Ù„Ø·ÙˆØ§Ø±Ø¦', 'Ø§Ø³ØªØ¬Ø§Ø¨Ø© Ø³Ø±ÙŠØ¹Ø© Ù„Ù„Ø·ÙˆØ§Ø±Ø¦'),
+('point-3-title', 'Reliable & Consistent', 'Ù…ÙˆØ«ÙˆÙ‚ÙŠØ© ÙˆØ§Ø³ØªÙ…Ø±Ø§Ø±ÙŠØ©'),
+('point-3-desc', 'Consistency is the foundation of trust.', 'Ø§Ù„Ø§Ø³ØªÙ…Ø±Ø§Ø±ÙŠØ© Ù‡ÙŠ Ø£Ø³Ø§Ø³ Ø§Ù„Ø«Ù‚Ø©.'),
+('point-3-ar', 'Ø®Ø¯Ù…Ø© Ù…ÙˆØ«ÙˆÙ‚Ø© ÙˆÙ…Ø³ØªÙ…Ø±Ø©', 'Ø®Ø¯Ù…Ø© Ù…ÙˆØ¸ÙˆÙ‚Ø© ÙˆÙ…Ø³ØªÙ…Ø±Ø©'),
+('trusted-by-label', 'Trusted By', 'Ù…ÙˆØ«ÙˆÙ‚ Ù…Ù† Ù‚Ø¨Ù„'),
+('trusted-by-title', 'The Financial Backbone of the Region', 'Ø§Ù„Ø¹Ù…ÙˆØ¯ Ø§Ù„ÙÙ‚Ø±ÙŠ Ø§Ù„Ù…Ø§Ù„ÙŠ Ù„Ù„Ù…Ù†Ø·Ù‚Ø©'),
+('cta-title', 'Secure Your Business Today', 'Ø£Ù…Ù† Ø¹Ù…Ù„Ùƒ Ø§Ù„ÙŠÙˆÙ…'),
+('cta-desc', 'Partner with FORTRESS Security for the ultimate peace of mind.', 'Ø´Ø§Ø±Ùƒ ÙÙˆØ±ØªØ±ÙŠØ³ Ù„Ù„Ø£Ù…Ù† Ù„ØªØ­ØµÙ„ Ø¹Ù„Ù‰ Ø±Ø§Ø­Ø© Ø¨Ø§Ù„ Ù…Ø·Ù„Ù‚Ø©.'),
+('btn-consult', 'Request a Consultation', 'Ø·Ù„Ø¨ Ø§Ø³ØªØ´Ø§Ø±Ø©'),
+('footer-bio', 'Pioneering secure logistics and tactical protection for the digital age.', 'Ø±Ø§Ø¦Ø¯ Ø§Ù„Ù„ÙˆØ¬Ø³ØªÙŠØ§Øª Ø§Ù„Ø¢Ù…Ù†Ø© ÙˆØ§Ù„Ø­Ù…Ø§ÙŠØ© Ø§Ù„ØªÙƒØªÙŠÙƒÙŠØ© Ù„Ù„Ø¹ØµØ± Ø§Ù„Ø±Ù‚Ù…ÙŠ.'),
+('hq-address', '1105 Almas Tower, JLT Dubai, United Arab Emirates', 'Ù¡Ù¡Ù Ù¥ Ø¨Ø±Ø¬ Ø§Ù„Ù…Ø§Ø³ØŒ Ø¬ÙŠ Ø¥Ù„ ØªÙŠ Ø¯Ø¨ÙŠØŒ Ø§Ù„Ø¥Ù…Ø§Ø±Ø§Øª Ø§Ù„Ø¹Ø±Ø¨ÙŠØ© Ø§Ù„Ù…ØªØ­Ø¯Ø©'),
+('footer-rights', 'All rights reserved.', 'Ø¬Ù…ÙŠØ¹ Ø§Ù„Ø­Ù‚ÙˆÙ‚ Ù…Ø­ÙÙˆØ¸Ø©.'),
+('services-badge', 'Elite Protection Services', 'Ø®Ø¯Ù…Ø§Øª Ø­Ù…Ø§ÙŠØ© Ø§Ù„Ù†Ø®Ø¨Ø©'),
+('services-hero-title', 'Architectural <br/><span class="text-transparent bg-clip-text brand-gradient">Vault of Security</span>', 'Ù‚Ø¨Ùˆ Ù…Ø¹Ù…Ø§Ø±ÙŠ <br/><span class="text-transparent bg-clip-text brand-gradient">Ù„Ù„Ø£Ù…Ø§Ù†</span>'),
+('services-hero-desc', 'Merging high-stakes security precision with elite logistical fluidity.', 'Ø¯Ù…Ø¬ Ø¯Ù‚Ø© Ø§Ù„Ø£Ù…Ù† Ù…Ø¹ Ø§Ù„Ù…Ø±ÙˆÙ†Ø© Ø§Ù„Ù„ÙˆØ¬Ø³ØªÙŠØ© Ø§Ù„Ù†Ø®Ø¨ÙˆÙŠØ©.'),
+('sec-services-title', 'Security Services', 'Ø®Ø¯Ù…Ø§Øª Ø§Ù„Ø£Ù…Ù†'),
+('sec-services-desc', 'Advanced protection frameworks managed by elite personnel.', 'Ø£Ø·Ø± Ø­Ù…Ø§ÙŠØ© Ù…ØªÙ‚Ø¯Ù…Ø© ÙŠØ¯ÙŠØ±Ù‡Ø§ Ù…ÙˆØ¸ÙÙˆÙ† Ù†Ø®Ø¨Ø©.'),
+('sec-services-title-ar', 'Ø®Ø¯Ù…Ø§Øª Ø§Ù„Ø£Ù…Ù†', 'Ø®Ø¯Ù…Ø§Øª Ø§Ù„Ø£Ù…Ù†'),
+('sec-services-desc-ar', 'Ù†Ø®Ø¨Ø© Ø§Ù„ÙƒÙˆØ§Ø¯Ø± Ø§Ù„Ø£Ù…Ù†ÙŠØ© Ù„Ø­Ù…Ø§ÙŠØ© Ø§Ù„Ù…Ù†Ø´Ø¢Øª ÙˆØ§Ù„Ø´Ø®ØµÙŠØ§Øª Ø§Ù„Ù‡Ø§Ù…Ø©.', 'Ù†Ø®Ø¨Ø© Ø§Ù„ÙƒÙˆØ§Ø¯Ø± Ø§Ù„Ø£Ù…Ù†ÙŠØ© Ù„Ø­Ù…Ø§ÙŠØ© Ø§Ù„Ù…Ù†Ø´Ø¢Øª ÙˆØ§Ù„Ø´Ø®ØµÙŠØ§Øª Ø§Ù„Ù‡Ø§Ù…Ø©.'),
+('svc-1-title', 'Trained Personnel', 'ÙƒÙˆØ§Ø¯Ø± Ù…Ø¯Ø±Ø¨Ø©'),
+('svc-1-desc', 'Our agents undergo rigorous tactical training.', 'ÙŠØ®Ø¶Ø¹ Ø¹Ù…Ù„Ø§Ø¤Ù†Ø§ Ù„ØªØ¯Ø±ÙŠØ¨Ø§Øª ØªÙƒØªÙŠÙƒÙŠØ© ØµØ§Ø±Ù…Ø©.'),
+('svc-1-ar', 'ÙƒÙˆØ§Ø¯Ø± Ù…Ø¯Ø±Ø¨Ø©', 'ÙƒÙˆØ§Ø¯Ø± Ù…Ø¯Ø±Ø¨Ø©'),
+('svc-2-title', 'Armed/Unarmed Guards', 'Ø­Ø±Ø§Ø³ Ø£Ù…Ù† Ù…Ø³Ù„Ø­ÙŠÙ†'),
+('svc-2-desc', 'Strategic deployment of protection units.', 'Ø§Ù„Ù†Ø´Ø± Ø§Ù„Ø§Ø³ØªØ±Ø§ØªÙŠØ¬ÙŠ Ù„ÙˆØ­Ø¯Ø§Øª Ø§Ù„Ø­Ù…Ø§ÙŠØ©.'),
+('svc-2-ar', 'Ø­Ø±Ø§Ø³ Ø£Ù…Ù† Ù…Ø³Ù„Ø­ÙŠÙ†', 'Ø­Ø±Ø§Ø³ Ø£Ù…Ù† Ù…Ø³Ù„Ø­ÙŠÙ†'),
+('svc-3-title', 'VIP Protection', 'Ø­Ù…Ø§ÙŠØ© ÙƒØ¨Ø§Ø± Ø§Ù„Ø´Ø®ØµÙŠØ§Øª'),
+('svc-3-desc', 'Discreet protection for executives and diplomats.', 'Ø­Ù…Ø§ÙŠØ© Ø³Ø±ÙŠØ© Ù„Ù„Ù…Ø³Ø¤ÙˆÙ„ÙŠÙ† ÙˆØ§Ù„Ø¯Ø¨Ù„ÙˆÙ…Ø§Ø³ÙŠÙŠÙ†.'),
+('svc-3-ar', 'Ø­Ù…Ø§ÙŠØ© ÙƒØ¨Ø§Ø± Ø§Ù„Ø´Ø®ØµÙŠØ§Øª', 'Ø­Ù…Ø§ÙŠØ© ÙƒØ¨Ø§Ø± Ø§Ù„Ø´Ø®ØµÙŠØ§Øª'),
+('cash-transit-title', 'Cash in Transit', 'Ù†Ù‚Ù„ Ø§Ù„Ø£Ù…ÙˆØ§Ù„'),
+('cash-transit-desc', 'Secure logistics for high-value assets.', 'Ù„ÙˆØ¬Ø³ØªÙŠØ§Øª Ø¢Ù…Ù†Ø© Ù„Ù„Ø£ØµÙˆÙ„ Ø¹Ø§Ù„ÙŠØ© Ø§Ù„Ù‚ÙŠÙ…Ø©.'),
+('cash-transit-title-ar', 'Ù†Ù‚Ù„ Ø§Ù„Ø£Ù…ÙˆØ§Ù„', 'Ù†Ù‚Ù„ Ø§Ù„Ø£Ù…ÙˆØ§Ù„'),
+('cash-transit-desc-ar', 'Ø­Ù„ÙˆÙ„ Ù„ÙˆØ¬Ø³ØªÙŠØ© Ø¢Ù…Ù†Ø© Ù„Ù†Ù‚Ù„ Ø§Ù„Ø£ØµÙˆÙ„ ÙˆØ§Ù„Ù…Ø¨Ø§Ù„Øº Ø§Ù„Ù†Ù‚Ø¯ÙŠØ©.', 'Ø­Ù„ÙˆÙ„ Ù„ÙˆØ¬Ø³ØªÙŠØ© Ø¢Ù…Ù†Ø© Ù„Ù†Ù‚Ù„ Ø§Ù„Ø£ØµÙˆÙ„ ÙˆØ§Ù„Ù…Ø¨Ø§Ù„Øº Ø§Ù„Ù†Ù‚Ø¯ÙŠØ©.'),
+('cash-svc-1', 'Secure Transport', 'Ø§Ù„Ù†Ù‚Ù„ Ø§Ù„Ø¢Ù…Ù†'),

@@ -80,4 +80,46 @@ class Storage {
         
         throw new Exception("Failed to move uploaded file.");
     }
+
+    public static function savePartner($file) {
+        $maxSize = 2 * 1024 * 1024; // 2MB
+        if ($file['size'] > $maxSize) {
+            throw new Exception("Logo file too large. Maximum 2MB allowed.");
+        }
+
+        $targetDir = __DIR__ . '/../public/assets/img/partners/';
+        if (!is_dir($targetDir)) {
+            mkdir($targetDir, 0755, true);
+        }
+
+        $finfo = finfo_open(FILEINFO_MIME_TYPE);
+        $mime = finfo_file($finfo, $file['tmp_name']);
+        finfo_close($finfo);
+
+        if (strpos($mime, 'image/') !== 0) {
+            throw new Exception("Invalid file type. Image expected.");
+        }
+
+        $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
+        if (!$ext) $ext = 'png';
+        
+        $filename = 'partner_' . uniqid() . '.' . $ext;
+        $targetFile = $targetDir . $filename;
+
+        if (move_uploaded_file($file['tmp_name'], $targetFile)) {
+            return 'assets/img/partners/' . $filename;
+        }
+        
+        throw new Exception("Failed to move uploaded logo.");
+    }
+
+    public static function deletePartner($filename) {
+        $filename = basename($filename);
+        $targetFile = __DIR__ . '/../public/assets/img/partners/' . $filename;
+        
+        if (file_exists($targetFile)) {
+            return unlink($targetFile);
+        }
+        return false;
+    }
 }

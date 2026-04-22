@@ -4,34 +4,115 @@
     const iframe = document.getElementById('editor-frame');
     let currentElement = null;
 
-    // Wait for iframe to load or reload
-    iframe.addEventListener('load', () => {
-        const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+    // Case 1: Script is running in the Parent Dashboard (admin.php)
+    if (iframe) {
+        iframe.addEventListener('load', () => {
+            const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
 
-        // Listen for right-click inside iframe
-        iframeDoc.addEventListener('contextmenu', (e) => {
+            // Listen for right-click inside iframe
+            iframeDoc.addEventListener('contextmenu', (e) => {
+                const target = e.target.closest('[msgid], [imgid], [vidid]');
+                if (!target) return;
+
+                e.preventDefault();
+                currentElement = target;
+                showEditorPopup(target, e);
+            });
+
+            // Inject highlight styles into iframe
+            const style = iframeDoc.createElement('style');
+            style.textContent = `
+                [msgid], [imgid], [vidid] { 
+                    cursor: context-menu !important; 
+                    transition: outline 0.2s, background 0.2s;
+                }
+                [msgid]:hover, [imgid]:hover, [vidid]:hover { 
+                    outline: 2px dashed #f97316 !important; 
+                    background: rgba(249, 115, 22, 0.05) !important;
+                }
+            `;
+            iframeDoc.head.appendChild(style);
+
+            // --- Partner Management Listeners (Added inside Iframe) ---
+            const addTrigger = iframeDoc.getElementById('add-partner-trigger');
+            const uploadInput = iframeDoc.getElementById('partner-upload-input');
+            
+            if (addTrigger && uploadInput) {
+                addTrigger.onclick = () => uploadInput.click();
+                uploadInput.onchange = async () => {
+                    if (!uploadInput.files[0]) return;
+                    const fd = new FormData();
+                    fd.append('file', uploadInput.files[0]);
+                    try {
+                        showToast('Uploading partner logo...');
+                        const response = await fetch('/upload_partner.php', { method: 'POST', body: fd });
+                        if (response.ok) {
+                            showToast('Partner added successfully!');
+                            iframe.contentWindow.location.reload();
+                        } else { throw new Error('Upload failed'); }
+                    } catch (err) { alert('Error: ' + err.message); }
+                };
+            }
+
+            const deleteButtons = iframeDoc.querySelectorAll('.delete-partner-btn');
+            deleteButtons.forEach(btn => {
+                btn.onclick = async (e) => {
+                    e.stopPropagation();
+                    if (!confirm('Are you sure?')) return;
+                    const filename = btn.getAttribute('data-filename');
+                    try {
+                        showToast('Deleting partner...');
+                        const response = await fetch('/delete_partner.php', {
+                            method: 'POST',
+                            body: JSON.stringify({ filename }),
+                            headers: { 'Content-Type': 'application/json' }
+                        });
+                        if (response.ok) {
+                            showToast('Partner removed.');
+                            iframe.contentWindow.location.reload();
+                        } else { throw new Error('Delete failed'); }
+                    } catch (err) { alert('Error: ' + err.message); }
+                };
+            });
+        });
+    } 
+    // Case 2: Script is running directly on the page (inside iframe or direct URL)
+    else {
+        document.addEventListener('contextmenu', (e) => {
             const target = e.target.closest('[msgid], [imgid], [vidid]');
             if (!target) return;
-
             e.preventDefault();
             currentElement = target;
             showEditorPopup(target, e);
         });
 
-        // Inject highlight styles into iframe
-        const style = iframeDoc.createElement('style');
-        style.textContent = `
-            [msgid], [imgid], [vidid] { 
-                cursor: context-menu !important; 
-                transition: outline 0.2s, background 0.2s;
-            }
-            [msgid]:hover, [imgid]:hover, [vidid]:hover { 
-                outline: 2px dashed #f97316 !important; 
-                background: rgba(249, 115, 22, 0.05) !important;
-            }
-        `;
-        iframeDoc.head.appendChild(style);
-    });
+        // Add Local Partner Listeners
+        const addTrigger = document.getElementById('add-partner-trigger');
+        const uploadInput = document.getElementById('partner-upload-input');
+        if (addTrigger && uploadInput) {
+            addTrigger.onclick = () => uploadInput.click();
+            uploadInput.onchange = async () => {
+                const fd = new FormData();
+                fd.append('file', uploadInput.files[0]);
+                const response = await fetch('/upload_partner.php', { method: 'POST', body: fd });
+                if (response.ok) location.reload();
+            };
+        }
+        
+        document.querySelectorAll('.delete-partner-btn').forEach(btn => {
+            btn.onclick = async (e) => {
+                e.stopPropagation();
+                if (!confirm('Are you sure?')) return;
+                const filename = btn.getAttribute('data-filename');
+                const response = await fetch('/delete_partner.php', {
+                    method: 'POST',
+                    body: JSON.stringify({ filename }),
+                    headers: { 'Content-Type': 'application/json' }
+                });
+                if (response.ok) location.reload();
+            };
+        });
+    }
 
     function showEditorPopup(el, mouseEvent) {
         removePopup();

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>About Us | FORTRESS Security Editorial</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .editorial-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+        }
+        .kinetic-gradient {
+            background: linear-gradient(135deg, #ee2323 0%, #f4802e 100%);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error": "#ba1a1a",
+                        "surface-tint": "#c0000f",
+                        "primary-fixed": "#ffdad5",
+                        "outline": "#926e6a",
+                        "surface-container-low": "#f3f3f3",
+                        "on-background": "#1a1c1c",
+                        "on-secondary-fixed": "#321200",
+                        "primary": "#bb000f",
+                        "on-error": "#ffffff",
+                        "inverse-primary": "#ffb4aa",
+                        "on-secondary-fixed-variant": "#753400",
+                        "on-tertiary-fixed-variant": "#474747",
+                        "surface-dim": "#dadada",
+                        "on-tertiary-fixed": "#1b1c1c",
+                        "tertiary-fixed": "#e4e2e1",
+                        "outline-variant": "#e8bcb7",
+                        "on-primary-fixed": "#410002",
+                        "inverse-surface": "#2f3131",
+                        "tertiary-container": "#757474",
+                        "inverse-on-surface": "#f1f1f1",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-container": "#fffbff",
+                        "secondary": "#994600",
+                        "on-tertiary": "#ffffff",
+                        "primary-container": "#e51b1e",
+                        "on-secondary": "#ffffff",
+                        "on-surface": "#1a1c1c",
+                        "secondary-fixed-dim": "#ffb68b",
+                        "on-tertiary-container": "#fefcfb",
+                        "secondary-fixed": "#ffdbc9",
+                        "on-error-container": "#93000a",
+                        "surface-variant": "#e2e2e2",
+                        "surface-container": "#eeeeee",
+                        "surface-bright": "#f9f9f9",
+                        "on-surface-variant": "#5e3f3b",
+                        "error-container": "#ffdad6",
+                        "secondary-container": "#ff8937",
+                        "on-secondary-container": "#672d00",
+                        "tertiary": "#5c5c5c",
+                        "on-primary-fixed-variant": "#930009",
+                        "primary-fixed-dim": "#ffb4aa",
+                        "tertiary-fixed-dim": "#c8c6c6",
+                        "surface-container-highest": "#e2e2e2",
+                        "surface": "#f9f9f9",
+                        "background": "#f9f9f9",
+                        "surface-container-high": "#e8e8e8",
+                        "on-primary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-surface font-body text-on-surface">
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 w-full z-50 bg-white/85 backdrop-blur-md">
+<div class="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto">
+<div class="flex items-center gap-4">
+<img alt="FORTRESS Logo" class="h-8" data-alt="minimalist corporate logo for a high-end security firm featuring sharp geometric lines and strong typography" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkGMC2ypiHm_Ni6IP5ew9MGvSnb11CdGTwD9jYAexWBmj_IGzaEOOdbXrKhFwr7zRoFRQuqtccSMpiQMf8Rjq5ivnHNsl5Xt5VfqfkkoDAq-eUqx7iY88O1wT2v5KkImEnIAIZtXFRak701BS_6mgjx_qsU2FYJ7h20ibqiQ74bmG90GPoYhAZfJa0QdFZj2MDOLsnHdhtgdZRPbkYBES_GD2qf0Pfjtmbn-5UOdxI68ydYlaAxf5S-V7nPFxW-yEbDJzpWiTE7Q"/>
+<span class="text-2xl font-bold tracking-tighter text-zinc-900 font-headline">FORTRESS</span>
+</div>
+<div class="hidden md:flex gap-8 items-center font-headline font-semibold tracking-tight">
+<a class="text-zinc-600 hover:text-zinc-900 transition-all duration-300" href="#">Home</a>
+<a class="text-red-600 border-b-2 border-red-600 pb-1" href="#">About Us</a>
+<a class="text-zinc-600 hover:text-zinc-900 transition-all duration-300" href="#">Services</a>
+<a class="text-zinc-600 hover:text-zinc-900 transition-all duration-300" href="#">Clients</a>
+<a class="text-zinc-600 hover:text-zinc-900 transition-all duration-300" href="#">Contact Us</a>
+</div>
+<div class="flex items-center gap-6">
+<span class="text-zinc-500 font-label uppercase text-xs tracking-widest cursor-pointer hover:text-primary transition-colors">EN | AR</span>
+<button class="kinetic-gradient text-white px-6 py-2.5 rounded-lg font-headline font-bold text-sm tracking-tight hover:opacity-90 transition-all transform active:scale-95">
+                    Get Quote
+                </button>
+</div>
+</div>
+</nav>
+<main class="pt-24">
+<!-- Hero Section: Editorial Header -->
+<section class="max-w-7xl mx-auto px-8 py-20 editorial-grid">
+<div class="col-span-12 md:col-span-8">
+<p class="text-primary font-label uppercase tracking-[0.2em] text-xs mb-4">Established Excellence</p>
+<h1 class="font-headline font-extrabold text-6xl md:text-8xl tracking-tighter text-on-surface mb-6">
+                    Redefining <br/><span class="text-tertiary">Protection.</span>
+</h1>
+<h2 class="text-2xl font-headline font-semibold text-zinc-400 mb-12 flex items-center gap-4">
+                    نحن نعيد تعريف الحماية <span class="h-px w-12 bg-zinc-200"></span>
+</h2>
+</div>
+<div class="col-span-12 md:col-span-10 md:col-start-2 relative mt-12">
+<div class="absolute -top-12 -left-12 w-48 h-48 bg-surface-container-low -z-10"></div>
+<img class="w-full h-[600px] object-cover rounded-lg" data-alt="architectural shot of a modern glass skyscraper reflecting a clear blue sky, emphasizing structural strength and transparency" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAG1Ly-MJt4Qwh1Yh96QzAtUJyL9XBJICcOiXiCABVjP899pyhOg1tC-8stiRn9jvqlOxrC_EiEcJq8w_0EYqe0mc8cY8eajrgTyXuLU0KUQPy9sw6X56cbFBk33PhT3lcgU58EyBwZ9L0nQ16EfYr6luUZB4E4I0ThyZ3hUa8MPvz8xhzsVQ8ZuYn99XVtDD-f95ArgeRHcKOJ-CYXqsvNtNS8ThC7XRTo3uSm5uMUI30cWkQWNdI367DH7wNtmzw_QMEaST7E5Q"/>
+<div class="absolute bottom-0 right-0 p-8 md:p-16 bg-surface-container-lowest max-w-xl -mr-8 md:-mr-12 mb-12 border-l-4 border-primary">
+<p class="text-tertiary text-lg leading-relaxed italic">
+                        "In an era of evolving threats, Super Speed Security stands as a monolithic guardian, blending rapid kinetic response with the quiet authority of architectural security."
+                    </p>
+</div>
+</div>
+</section>
+<!-- Company Overview Section -->
+<section class="bg-surface-container-low py-32">
+<div class="max-w-7xl mx-auto px-8 grid grid-cols-1 md:grid-cols-2 gap-24 items-center">
+<div>
+<h3 class="font-headline font-bold text-4xl mb-2">Company Overview</h3>
+<h4 class="text-xl font-headline font-medium text-primary mb-8">نظرة عامة على الشركة</h4>
+<div class="space-y-6 text-tertiary text-lg leading-relaxed">
+<p>Super Speed Security is a premier editorial-level security firm headquartered in the financial district. We specialize in high-stakes asset protection and executive defense, operating with a philosophy of quiet power and absolute reliability.</p>
+<p>Our methodology combines elite human intelligence with cutting-edge defensive technology. Every operation we undertake is treated with the precision of a master-crafted timepiece—complex beneath the surface, yet effortlessly functional for our clients.</p>
+</div>
+<div class="mt-12 flex gap-12">
+<div>
+<span class="block text-4xl font-headline font-extrabold text-on-surface">15+</span>
+<span class="text-xs font-label uppercase tracking-widest text-zinc-500">Years of Service</span>
+</div>
+<div>
+<span class="block text-4xl font-headline font-extrabold text-on-surface">2.4k</span>
+<span class="text-xs font-label uppercase tracking-widest text-zinc-500">Global Assets</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="space-y-4">
+<div class="bg-surface-container-lowest p-1 aspect-square rounded-xl shadow-sm">
+<img class="w-full h-full object-cover rounded-lg" data-alt="close-up of a high-tech biometric fingerprint scanner with a subtle red laser light glowing across the sensor" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtmbmuEbQ2EHenMSYTcq88kiO7B8jGbf9OIO6LdWCEhOTXGjWkQQH_AokXI0aN4oh1yBFIOJ4EN5pf8M5H3OMj2XapEGdDSQa1Ggyuk9HBThl64uhBEMFOPAengnlI298vrvbLF5KeUDrJ4FeDAmrLr6ilEXLVZNzSc_hvUJoY3vs4J0hfc_FXfdloQEe8uLatC1wjMKKJUP7X83_e2aYV2Decdh9plfaNXjcX48KrMaYzB0FXDp1Ikxk-U9UjvcW2VCTzD-SLPg"/>
+</div>
+<div class="bg-surface-container-lowest p-8 rounded-xl h-48 flex flex-col justify-end">
+<span class="material-symbols-outlined text-primary text-4xl mb-4" data-icon="shield_lock">shield_lock</span>
+<p class="font-headline font-bold">Uncompromising Integrity</p>
+</div>
+</div>
+<div class="space-y-4 pt-12">
+<div class="bg-primary p-8 rounded-xl h-48 flex flex-col justify-end text-white">
+<span class="material-symbols-outlined text-4xl mb-4" data-icon="bolt">bolt</span>
+<p class="font-headline font-bold">Rapid Response</p>
+</div>
+<div class="bg-surface-container-lowest p-1 aspect-square rounded-xl shadow-sm">
+<img class="w-full h-full object-cover rounded-lg" data-alt="blurred motion shot of security personnel walking through a minimalist modern hallway with focused expressions" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUalWxbBujSp9Fg1r-w6chICeJL_QnQkos9IpB1qIs8T0DbGtt-kGZvFUCiuaUvW6PRX5s6ZKva_Z2J8oJZ-2hvDgV_6GoAlCCwdCcyRwjO1FFLQ-hLf47_jFAdbsvX3bRkD6AJ5sLCAT1a7kiDNJyf1m8GodfkzTIdUb8mRowvSO9AhiON9XPZdNZwJn3xsSdUPyOZDe9b2O9sc14-BFqkzPnLsn8KFNsE_RsH7Uu4vUgaoPlKz60Ayf_5F0VD76O3HZYj9pYDw"/>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Mission & Goals Section (Bento Grid) -->
+<section class="py-32 max-w-7xl mx-auto px-8">
+<div class="text-center mb-24">
+<h3 class="font-headline font-extrabold text-5xl mb-4">Our Core Directives</h3>
+<h4 class="text-2xl font-headline font-semibold text-zinc-400">توجهاتنا الأساسية</h4>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Mission Card -->
+<div class="md:col-span-2 bg-surface-container-lowest p-12 rounded-xl relative overflow-hidden group border border-zinc-100">
+<div class="relative z-10">
+<div class="flex items-center gap-4 mb-8">
+<span class="material-symbols-outlined text-4xl text-primary" data-icon="target">target</span>
+<div>
+<h5 class="font-headline font-bold text-2xl">Our Mission</h5>
+<p class="text-sm font-headline text-zinc-400 uppercase tracking-tighter">مهمتنا</p>
+</div>
+</div>
+<p class="text-2xl text-on-surface leading-snug font-medium max-w-xl">
+                            To create invisible layers of absolute security, ensuring our clients can pursue their ambitions without the shadow of risk. We don't just protect physical spaces; we preserve peace of mind.
+                        </p>
+</div>
+<div class="absolute top-0 right-0 w-64 h-64 opacity-[0.03] pointer-events-none group-hover:opacity-[0.05] transition-opacity">
+<span class="material-symbols-outlined text-[20rem]" data-icon="security">security</span>
+</div>
+</div>
+<!-- Goal Card 1 -->
+<div class="bg-surface-container-low p-10 rounded-xl flex flex-col justify-between">
+<div>
+<span class="material-symbols-outlined text-primary mb-6" data-icon="analytics">analytics</span>
+<h5 class="font-headline font-bold text-xl mb-2">Strategic Precision</h5>
+<p class="text-tertiary text-sm">Dedicating intensive analytical resources to anticipate threats before they manifest.</p>
+</div>
+<div class="mt-8 pt-6 border-t border-zinc-200">
+<span class="text-xs font-label uppercase text-zinc-400">Goal 01 — الأهداف</span>
+</div>
+</div>
+<!-- Goal Card 2 -->
+<div class="bg-zinc-900 p-10 rounded-xl text-white flex flex-col justify-between">
+<div>
+<span class="material-symbols-outlined text-red-500 mb-6" data-icon="hub">hub</span>
+<h5 class="font-headline font-bold text-xl mb-2 text-zinc-100">Global Integration</h5>
+<p class="text-zinc-400 text-sm">Expanding our rapid-response network across major international trade hubs by 2026.</p>
+</div>
+<div class="mt-8 pt-6 border-t border-zinc-800">
+<span class="text-xs font-label uppercase text-zinc-500">Goal 02 — الأهداف</span>
+</div>
+</div>
+<!-- Goal Card 3 -->
+<div class="md:col-span-2 bg-surface-container-lowest p-10 rounded-xl border border-zinc-100 flex flex-col md:flex-row gap-12 items-center">
+<div class="flex-1">
+<span class="material-symbols-outlined text-primary mb-6" data-icon="memory">memory</span>
+<h5 class="font-headline font-bold text-xl mb-2">Technological Superiority</h5>
+<p class="text-tertiary text-sm">Integrating autonomous surveillance and neural-network defense systems into every protocol.</p>
+<div class="mt-8 pt-6 border-t border-zinc-200">
+<span class="text-xs font-label uppercase text-zinc-400">Goal 03 — الأهداف</span>
+</div>
+</div>
+<div class="w-full md:w-1/3 h-48 bg-zinc-100 rounded-lg overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="abstract close-up of computer server rack with blinking red and amber indicator lights in a dark data center" src="https://lh3.googleusercontent.com/aida-public/AB6AXuByj3LLCpgQcfd-tws-uN6hs3ScvDh4pkn9V3c9zV1-DAq4R8M-b-iuSYQjHbrGYDgGUdFMWaWFOnev5H0ofQYGOSKCBG7LxEJ4JWQScIraAYJiR7-iYB7BsMYDx8NN4nOQxQyPPXArUzf1ObKhkjky0AtAu4aPkXbAmh8SBGunGTtTGsH427XXcs7M3TZ_ALCh3anFTl0IWRUmfGPcGDxolcr9miGPU6CtODRD7jNRrzSxZum8_-IQvPIZDXgDcL-7R0G5w0oEig"/>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="max-w-7xl mx-auto px-8 mb-32">
+<div class="kinetic-gradient rounded-xl p-16 flex flex-col md:flex-row justify-between items-center text-white relative overflow-hidden">
+<div class="relative z-10">
+<h3 class="font-headline font-extrabold text-4xl mb-4">Secure Your Legacy Today</h3>
+<p class="text-lg opacity-90 font-medium">Join the ranks of the world's most protected enterprises.</p>
+</div>
+<button class="relative z-10 mt-8 md:mt-0 bg-white text-primary px-10 py-4 rounded-lg font-headline font-bold uppercase tracking-widest text-sm hover:bg-zinc-100 transition-colors">
+                    Consult an Expert
+                </button>
+<div class="absolute -right-20 -bottom-20 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-zinc-100 border-t border-zinc-200/10">
+<div class="flex flex-col md:flex-row justify-between items-center px-8 py-12 max-w-7xl mx-auto">
+<div class="mb-8 md:mb-0">
+<div class="flex items-center gap-3 mb-4">
+<img alt="FORTRESS Footer Logo" class="h-6 grayscale" data-alt="monochrome version of the corporate shield logo for high-end professional use" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5bBeG6CNaCt0S3_8y7Dg1ES27NQp2dXxUZ_c7si3D59RtBL_ArV-3xE2rqKqgopru-LRvIjpszoLjjCJh_AszsRiv-XQ2SyJezBYEIgEypjJXLTdrJxO5mnFd-4PR9hgKs6C_1SszI0thQus56U9EXCcItysyrgpe8yZQuZsltiYxBfjJWxv6Z7xI1YNCOfAFnbduxnQ41iKPBhr63Kq29GDPrRBybw198v9FfoC1Rq8G9VqFGpciDnpNZDVvm-7sNbG8gOMXWA"/>
+<span class="text-xl font-bold text-zinc-900 font-headline uppercase tracking-tighter">FORTRESS</span>
+</div>
+<p class="font-inter text-sm text-zinc-500">© 2024 Fortress Security Editorial. All rights reserved.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-8 text-sm font-inter">
+<a class="text-zinc-500 hover:text-red-600 transition-all underline-offset-4" href="#">Privacy Policy</a>
+<a class="text-zinc-500 hover:text-red-600 transition-all underline-offset-4" href="#">Terms of Service</a>
+<a class="text-zinc-500 hover:text-red-600 transition-all underline-offset-4" href="#">Security Disclosure</a>
+<a class="text-zinc-500 hover:text-red-600 transition-all underline-offset-4" href="#">Global Offices</a>
+</div>
+</div>
+</footer>
+</body></html>
