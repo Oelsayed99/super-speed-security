@@ -6,6 +6,7 @@ if (!isset($_SESSION['admin_logged_in'])) {
     exit;
 }
 
+require_once __DIR__ . '/../app/Database.php';
 require_once __DIR__ . '/../app/Storage.php';
 use App\Storage;
 

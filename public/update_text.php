@@ -1,4 +1,5 @@
 <?php
+ini_set('display_errors', '0');
 session_start();
 if (!isset($_SESSION['admin_logged_in'])) {
     http_response_code(403);
@@ -6,10 +7,10 @@ if (!isset($_SESSION['admin_logged_in'])) {
     exit;
 }
 
+require_once __DIR__ . '/../app/Database.php';
 require_once __DIR__ . '/../app/Storage.php';
 
 use App\Storage;
-use Exception;
 
 header('Content-Type: application/json');
 

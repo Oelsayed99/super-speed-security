@@ -52,7 +52,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <input type="password" name="password" class="form-control" required autocomplete="current-password">
             </div>
             <button type="submit" class="save-btn">Login</button>
-            <a href="/" class="back-link">← Back to Website</a>
+            <div style="margin-top: 20px; display: flex; justify-content: space-between; align-items: center;">
+                <a href="forgot_password.php" style="color: #666; font-size: 12px; text-decoration: none; font-weight: 800; text-transform: uppercase;">Forgot Password?</a>
+                <a href="/" class="back-link" style="margin: 0;">← Back</a>
+            </div>
         </form>
     </div>
 </body>

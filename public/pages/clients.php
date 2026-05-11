@@ -1,41 +1,27 @@
 <section class="py-24 bg-surface">
     <div class="max-w-7xl mx-auto px-8">
         <div class="mb-24">
-            <?php if ($lang === 'en'): ?>
-                <h1 class="text-5xl md:text-7xl font-extrabold text-on-surface mb-8">
-                    <?= translate('clients-title', 'Fortifying Global Leaders.') ?>
-                </h1>
-            <?php else: ?>
-                <h1 class="text-4xl md:text-6xl font-bold text-on-surface mb-8 font-headline" dir="rtl">
-                    <?= translate('clients-title-ar', 'تحصين رواد العالم') ?>
-                </h1>
-            <?php endif; ?>
-            <p class="text-xl text-zinc-600 max-w-2xl leading-relaxed">
-                <?= translate('clients-desc', 'Trusted by multinational corporations to provide uncompromising security and lightning-fast tactical responses.') ?>
-            </p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mb-24">
-            <!-- Testimonial 1 -->
-            <div class="p-10 bg-white rounded-3xl shadow-sm border border-zinc-50 relative group hover:shadow-xl transition-all">
-                <span class="material-symbols-outlined text-red-100 text-6xl absolute top-8 right-8">format_quote</span>
-                <p class="text-lg text-zinc-700 leading-relaxed mb-8 relative z-10 italic">
-                    <?= translate('test-1-text', '"Fortress provides a level of certainty that is essential for our global operations."') ?>
-                </p>
-                <div class="relative z-10">
-                    <h4 class="font-bold text-on-surface"><?= translate('test-1-name', 'Alexander Sterling') ?></h4>
-                    <p class="text-sm text-zinc-400 font-medium uppercase tracking-widest"><?= translate('test-1-pos', 'CSO, Global FinTech') ?></p>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-end">
+                <div class="space-y-8 <?= $lang === 'ar' ? 'text-right' : '' ?>" <?= $lang === 'ar' ? 'dir="rtl"' : '' ?>>
+                    <div class="inline-block px-4 py-1 bg-surface-container-high rounded-full">
+                        <span class="text-[0.65rem] font-bold tracking-[0.2em] uppercase text-tertiary"><?= translate('clients-ecosystem', 'Our Ecosystem') ?></span>
+                    </div>
+                    <h1 class="text-5xl lg:text-7xl font-extrabold leading-[1.1] tracking-tighter <?= $lang === 'ar' ? 'font-headline' : '' ?>">
+                        <?php if ($lang === 'en'): ?>
+                            <?= translate('clients-hero-title', 'The Trust of <br/><span class="text-transparent bg-clip-text brand-gradient">Industry Leaders.</span>') ?>
+                        <?php else: ?>
+                            <?= translate('clients-hero-title-ar', 'ثقة <br/><span class="text-transparent bg-clip-text brand-gradient">رواد الصناعة.</span>') ?>
+                        <?php endif; ?>
+                    </h1>
                 </div>
-            </div>
-            <!-- Testimonial 2 -->
-            <div class="p-10 bg-zinc-900 text-white rounded-3xl shadow-xl relative group">
-                <span class="material-symbols-outlined text-zinc-800 text-6xl absolute top-8 right-8">format_quote</span>
-                <p class="text-lg text-zinc-300 leading-relaxed mb-8 relative z-10 italic">
-                    <?= translate('test-2-text', '"The transition was seamless. Their tactical response time is unmatched in the Middle East."') ?>
-                </p>
-                <div class="relative z-10">
-                    <h4 class="font-bold text-white"><?= translate('test-2-name', 'Hassan Al-Mansoori') ?></h4>
-                    <p class="text-sm text-zinc-500 font-medium uppercase tracking-widest"><?= translate('test-2-pos', 'Director, AD Logistics') ?></p>
+                <div class="space-y-6 <?= $lang === 'ar' ? 'border-r pr-8 text-right' : 'border-l pl-8' ?> border-outline-variant/30 pb-2" <?= $lang === 'ar' ? 'dir="rtl"' : '' ?>>
+                    <p class="text-lg text-tertiary leading-relaxed font-body">
+                        <?php if ($lang === 'en'): ?>
+                            <?= translate('clients-hero-desc', 'We build long-term relationships through unwavering integrity and operational excellence. Our clients aren\'t just partners; they are the foundation of our shared security infrastructure.') ?>
+                        <?php else: ?>
+                            <?= translate('clients-hero-desc-ar', 'نحن نبني علاقات طويلة الأمد من خلال النزاهة الراسخة والتميز التشغيلي. عملاؤنا ليسوا مجرد شركاء؛ بل هم الأساس لبنيتنا التحتية الأمنية المشتركة.') ?>
+                        <?php endif; ?>
+                    </p>
                 </div>
             </div>
         </div>

@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-background": "#1a1c1c",
+                    "surface-tint": "#c0000f",
+                    "tertiary": "#5c5c5c",
+                    "primary-fixed-dim": "#ffb4aa",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-container": "#ff8937",
+                    "on-tertiary-container": "#fefcfb",
+                    "primary": "#bb000f",
+                    "surface-container-high": "#e8e8e8",
+                    "on-primary-container": "#fffbff",
+                    "outline": "#926e6a",
+                    "on-error": "#ffffff",
+                    "secondary-fixed-dim": "#ffb68b",
+                    "inverse-primary": "#ffb4aa",
+                    "on-secondary-container": "#672d00",
+                    "surface-container-highest": "#e2e2e2",
+                    "tertiary-fixed-dim": "#c8c6c6",
+                    "on-secondary": "#ffffff",
+                    "on-secondary-fixed-variant": "#753400",
+                    "on-tertiary-fixed-variant": "#474747",
+                    "surface-dim": "#dadada",
+                    "surface": "#f9f9f9",
+                    "surface-bright": "#f9f9f9",
+                    "error": "#ba1a1a",
+                    "error-container": "#ffdad6",
+                    "on-surface": "#1a1c1c",
+                    "on-tertiary-fixed": "#1b1c1c",
+                    "secondary": "#994600",
+                    "on-secondary-fixed": "#321200",
+                    "surface-container-low": "#f3f3f3",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-container": "#757474",
+                    "on-primary-fixed": "#410002",
+                    "surface-container": "#eeeeee",
+                    "tertiary-fixed": "#e4e2e1",
+                    "inverse-surface": "#2f3131",
+                    "secondary-fixed": "#ffdbc9",
+                    "inverse-on-surface": "#f1f1f1",
+                    "on-surface-variant": "#5e3f3b",
+                    "primary-fixed": "#ffdad5",
+                    "background": "#f9f9f9",
+                    "primary-container": "#e51b1e",
+                    "on-error-container": "#93000a",
+                    "on-primary": "#ffffff",
+                    "outline-variant": "#e8bcb7",
+                    "on-primary-fixed-variant": "#930009",
+                    "surface-variant": "#e2e2e2"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .brand-gradient {
+        background: linear-gradient(135deg, #EE2323 0%, #F4802E 100%);
+      }
+      .glass-effect {
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+      }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary/20">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-white/80 dark:bg-zinc-950/80 backdrop-blur-md shadow-sm dark:shadow-none">
+<div class="flex justify-between items-center max-w-7xl mx-auto px-8 h-20">
+<div class="text-xl font-extrabold tracking-tighter text-zinc-900 dark:text-white flex items-center gap-2">
+<span class="text-red-600">SUPER</span> SPEED
+            </div>
+<div class="hidden md:flex items-center space-x-8">
+<a class="text-zinc-600 dark:text-zinc-400 font-medium hover:text-red-500 transition-colors duration-300" href="#">Home</a>
+<a class="text-zinc-600 dark:text-zinc-400 font-medium hover:text-red-500 transition-colors duration-300" href="#">About Us</a>
+<a class="text-zinc-600 dark:text-zinc-400 font-medium hover:text-red-500 transition-colors duration-300" href="#">Services</a>
+<a class="text-zinc-600 dark:text-zinc-400 font-medium hover:text-red-500 transition-colors duration-300" href="#">Clients</a>
+<a class="text-red-600 dark:text-red-500 font-bold border-b-2 border-red-600 transition-colors duration-300" href="#">Contact Us</a>
+</div>
+<div class="flex items-center gap-4">
+<span class="text-zinc-600 dark:text-zinc-400 text-sm font-medium">EN | AR</span>
+</div>
+</div>
+</nav>
+<main class="pt-20">
+<!-- Hero / Headline Section -->
+<section class="bg-surface-container-low py-24">
+<div class="max-w-7xl mx-auto px-8">
+<div class="grid md:grid-cols-2 gap-12 items-end">
+<div class="space-y-6">
+<span class="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest">Connect with Experts</span>
+<h1 class="text-5xl md:text-6xl font-extrabold font-headline tracking-tighter leading-tight text-zinc-900">
+                            Contact us to discuss your security needs.
+                        </h1>
+<h2 class="text-3xl md:text-4xl font-extrabold font-headline tracking-tighter leading-tight text-zinc-600 text-right" dir="rtl">
+                            تواصل معنا لمناقشة احتياجاتك الأمنية.
+                        </h2>
+</div>
+<div class="hidden md:block">
+<div class="h-[1px] w-full bg-outline-variant opacity-30 mb-8"></div>
+<p class="text-zinc-500 text-lg leading-relaxed max-w-md">
+                            From cash-in-transit to high-stakes facility protection, our architectural vault of security solutions is at your disposal. Reach out for a specialized consultation.
+                        </p>
+</div>
+</div>
+</div>
+</section>
+<!-- Contact Section: Form & Details -->
+<section class="py-24 max-w-7xl mx-auto px-8">
+<div class="grid lg:grid-cols-12 gap-16">
+<!-- Contact Form Card -->
+<div class="lg:col-span-7 bg-surface-container-lowest rounded-xl p-10 shadow-sm border border-outline-variant/10">
+<form action="#" class="space-y-8">
+<div class="grid md:grid-cols-2 gap-8">
+<div class="space-y-2">
+<label class="text-sm font-semibold text-zinc-700 uppercase tracking-wider ml-1">Name</label>
+<input class="w-full bg-surface-container-high border-0 border-b-2 border-outline-variant/30 focus:border-primary focus:ring-0 px-4 py-3 rounded-t-lg transition-all placeholder:text-zinc-400" placeholder="Your full name" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-semibold text-zinc-700 uppercase tracking-wider ml-1">Email</label>
+<input class="w-full bg-surface-container-high border-0 border-b-2 border-outline-variant/30 focus:border-primary focus:ring-0 px-4 py-3 rounded-t-lg transition-all placeholder:text-zinc-400" placeholder="email@example.com" type="email"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-semibold text-zinc-700 uppercase tracking-wider ml-1">Phone</label>
+<input class="w-full bg-surface-container-high border-0 border-b-2 border-outline-variant/30 focus:border-primary focus:ring-0 px-4 py-3 rounded-t-lg transition-all placeholder:text-zinc-400" placeholder="+966 00 000 0000" type="tel"/>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-semibold text-zinc-700 uppercase tracking-wider ml-1">Message</label>
+<textarea class="w-full bg-surface-container-high border-0 border-b-2 border-outline-variant/30 focus:border-primary focus:ring-0 px-4 py-3 rounded-t-lg transition-all placeholder:text-zinc-400 resize-none" placeholder="Tell us about your security requirements..." rows="5"></textarea>
+</div>
+<button class="brand-gradient text-white w-full md:w-auto px-10 py-4 rounded-xl font-bold tracking-tight text-lg flex items-center justify-center gap-3 hover:scale-[1.02] active:scale-[0.98] transition-all shadow-xl shadow-primary/20" type="submit">
+                            Send Inquiry
+                            <span class="material-symbols-outlined" data-icon="send">send</span>
+</button>
+</form>
+</div>
+<!-- Contact Details & Map -->
+<div class="lg:col-span-5 space-y-12">
+<div class="space-y-8">
+<h3 class="text-2xl font-bold font-headline tracking-tight">Headquarters</h3>
+<div class="flex items-start gap-6">
+<div class="w-12 h-12 flex-shrink-0 bg-primary/10 rounded-xl flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="location_on">location_on</span>
+</div>
+<div>
+<h4 class="font-bold text-lg mb-1">Office Location</h4>
+<p class="text-zinc-500 leading-relaxed">Financial District, Tower 7, Level 14<br/>Riyadh, Saudi Arabia</p>
+</div>
+</div>
+<div class="flex items-start gap-6">
+<div class="w-12 h-12 flex-shrink-0 bg-primary/10 rounded-xl flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="call">call</span>
+</div>
+<div>
+<h4 class="font-bold text-lg mb-1">Direct Line</h4>
+<p class="text-zinc-500">800-SUPER-SPEED<br/>+966 11 234 5678</p>
+</div>
+</div>
+<div class="flex items-start gap-6">
+<div class="w-12 h-12 flex-shrink-0 bg-primary/10 rounded-xl flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="mail">mail</span>
+</div>
+<div>
+<h4 class="font-bold text-lg mb-1">Email Support</h4>
+<p class="text-zinc-500">operations@superspeed-sec.com<br/>info@superspeed-sec.com</p>
+</div>
+</div>
+</div>
+<!-- Map Integration -->
+<div class="rounded-xl overflow-hidden h-72 relative group grayscale hover:grayscale-0 transition-all duration-700 shadow-lg">
+<img class="w-full h-full object-cover" data-alt="detailed minimalist digital map showing riyadh city center with professional architectural highlighting and red location pin" data-location="Riyadh" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCeQcQsN1Ax-TnpMhyaP-o9fArpC99N7_IaeuMJ5Hkh2mg97x8Ul_K75-5ONPvm8Ip5rL04Wu1fC_p8e_FFrMMDofFvJCQLOEEzLKUFmK7csX2M3snP9267gbD-LYd29Xtr9C71HVhIHnltRPXsKjKKyEE6buZBnTQ4bTmlyEWVtzTyr7XozPenjaNVWV8Uc5YWxY5g2Yzz9tCSfhsLwMqtsXZ7U9Eo7lwLboLTJH2v8kcY50Ukj3eQ9fblO9sRsY3q6OXIBWSD-A"/>
+<div class="absolute inset-0 bg-primary/5 group-hover:bg-transparent transition-colors"></div>
+<div class="absolute bottom-4 right-4 bg-white px-4 py-2 rounded-lg shadow-md flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-red-600 animate-pulse"></span>
+<span class="text-xs font-bold text-zinc-900 uppercase tracking-tighter">HQ Verified Secure</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Trust Indicator Section -->
+<section class="bg-zinc-900 py-20 overflow-hidden relative">
+<div class="absolute top-0 right-0 w-1/3 h-full opacity-10 pointer-events-none">
+<span class="material-symbols-outlined text-[20rem] text-white" data-icon="shield">shield</span>
+</div>
+<div class="max-w-7xl mx-auto px-8 relative z-10 flex flex-col md:flex-row justify-between items-center gap-8">
+<div class="text-center md:text-left">
+<h4 class="text-zinc-400 uppercase tracking-[0.3em] text-xs font-bold mb-4">Operational Status</h4>
+<div class="flex items-center gap-4">
+<div class="px-6 py-3 rounded-full bg-green-500/10 border border-green-500/20 flex items-center gap-3">
+<span class="w-2.5 h-2.5 rounded-full bg-green-500"></span>
+<span class="text-green-500 font-bold tracking-tighter">ALL SYSTEMS SECURE</span>
+</div>
+<div class="text-white/40 font-mono text-sm tracking-widest">MTTF: 99.99%</div>
+</div>
+</div>
+<div class="text-right">
+<p class="text-white/60 max-w-xs text-sm leading-relaxed italic">
+                        "Architectural precision in security. Speed in logistics. Sovereignty in protection."
+                    </p>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-zinc-50 dark:bg-zinc-900 w-full py-12 px-8">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+<div class="space-y-4">
+<div class="text-lg font-bold text-zinc-900 dark:text-zinc-100 uppercase tracking-tighter">
+                    SUPER SPEED SECURITY
+                </div>
+<p class="text-zinc-500 dark:text-zinc-400 text-sm leading-[1.6] max-w-xs">
+                    The leading name in high-stakes security and cash logistics. Providing vaulted solutions for modern financial architecture.
+                </p>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="space-y-3">
+<h5 class="text-xs font-black uppercase tracking-widest text-zinc-400">Navigation</h5>
+<ul class="space-y-2">
+<li><a class="text-zinc-500 dark:text-zinc-400 text-sm hover:text-zinc-900 dark:hover:text-white transition-all" href="#">Home</a></li>
+<li><a class="text-zinc-500 dark:text-zinc-400 text-sm hover:text-zinc-900 dark:hover:text-white transition-all" href="#">About Us</a></li>
+<li><a class="text-zinc-500 dark:text-zinc-400 text-sm hover:text-zinc-900 dark:hover:text-white transition-all" href="#">Services</a></li>
+</ul>
+</div>
+<div class="space-y-3">
+<h5 class="text-xs font-black uppercase tracking-widest text-zinc-400">Legal</h5>
+<ul class="space-y-2">
+<li><a class="text-zinc-500 dark:text-zinc-400 text-sm hover:text-zinc-900 dark:hover:text-white transition-all" href="#">Privacy Policy</a></li>
+<li><a class="text-zinc-500 dark:text-zinc-400 text-sm hover:text-zinc-900 dark:hover:text-white transition-all" href="#">Terms of Service</a></li>
+<li><a class="text-zinc-500 dark:text-zinc-400 text-sm hover:text-zinc-900 dark:hover:text-white transition-all" href="#">Security Protocols</a></li>
+</ul>
+</div>
+</div>
+<div class="space-y-4">
+<h5 class="text-xs font-black uppercase tracking-widest text-zinc-400">Updates</h5>
+<div class="flex">
+<input class="bg-surface-container-highest border-0 px-4 py-2 w-full rounded-l-lg text-sm focus:ring-1 focus:ring-primary" placeholder="Email address" type="email"/>
+<button class="bg-zinc-900 text-white px-4 py-2 rounded-r-lg hover:bg-black transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+<div class="text-[10px] text-zinc-400 mt-8">
+                    © 2024 Sovereign Security &amp; Logistics. All rights reserved.
+                </div>
+</div>
+</div>
+</footer>
+</body></html>

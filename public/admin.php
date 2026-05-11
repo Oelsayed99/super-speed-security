@@ -6,6 +6,7 @@ if (!isset($_SESSION['admin_logged_in'])) {
 }
 
 if (isset($_GET['logout'])) {
+    session_unset();
     session_destroy();
     header("Location: login.php");
     exit;
@@ -30,6 +31,7 @@ if (isset($_GET['logout'])) {
                     <option value="ar">Arabic</option>
                 </select>
             </div>
+            <a href="admin_users.php" class="btn-view" style="border-color: #EE2323; color: #EE2323;">Manage Users</a>
             <a href="/index.php" target="_blank" class="btn-view">View Website ↗</a>
             <a href="?logout=1" class="btn-logout">Logout</a>
         </div>

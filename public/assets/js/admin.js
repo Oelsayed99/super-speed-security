@@ -4,115 +4,69 @@
     const iframe = document.getElementById('editor-frame');
     let currentElement = null;
 
-    // Case 1: Script is running in the Parent Dashboard (admin.php)
-    if (iframe) {
-        iframe.addEventListener('load', () => {
-            const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+    // Attach context menu to current document
+    document.addEventListener('contextmenu', (e) => {
+        const target = e.target.closest('[msgid], [imgid], [vidid]');
+        if (!target) return;
+        e.preventDefault();
+        e.stopPropagation();
+        currentElement = target;
+        showEditorPopup(target, e);
+    });
 
-            // Listen for right-click inside iframe
-            iframeDoc.addEventListener('contextmenu', (e) => {
-                const target = e.target.closest('[msgid], [imgid], [vidid]');
-                if (!target) return;
-
-                e.preventDefault();
-                currentElement = target;
-                showEditorPopup(target, e);
-            });
-
-            // Inject highlight styles into iframe
-            const style = iframeDoc.createElement('style');
-            style.textContent = `
-                [msgid], [imgid], [vidid] { 
-                    cursor: context-menu !important; 
-                    transition: outline 0.2s, background 0.2s;
-                }
-                [msgid]:hover, [imgid]:hover, [vidid]:hover { 
-                    outline: 2px dashed #f97316 !important; 
-                    background: rgba(249, 115, 22, 0.05) !important;
-                }
-            `;
-            iframeDoc.head.appendChild(style);
-
-            // --- Partner Management Listeners (Added inside Iframe) ---
-            const addTrigger = iframeDoc.getElementById('add-partner-trigger');
-            const uploadInput = iframeDoc.getElementById('partner-upload-input');
-            
-            if (addTrigger && uploadInput) {
-                addTrigger.onclick = () => uploadInput.click();
-                uploadInput.onchange = async () => {
-                    if (!uploadInput.files[0]) return;
-                    const fd = new FormData();
-                    fd.append('file', uploadInput.files[0]);
-                    try {
-                        showToast('Uploading partner logo...');
-                        const response = await fetch('/upload_partner.php', { method: 'POST', body: fd });
-                        if (response.ok) {
-                            showToast('Partner added successfully!');
-                            iframe.contentWindow.location.reload();
-                        } else { throw new Error('Upload failed'); }
-                    } catch (err) { alert('Error: ' + err.message); }
-                };
-            }
-
-            const deleteButtons = iframeDoc.querySelectorAll('.delete-partner-btn');
-            deleteButtons.forEach(btn => {
-                btn.onclick = async (e) => {
-                    e.stopPropagation();
-                    if (!confirm('Are you sure?')) return;
-                    const filename = btn.getAttribute('data-filename');
-                    try {
-                        showToast('Deleting partner...');
-                        const response = await fetch('/delete_partner.php', {
-                            method: 'POST',
-                            body: JSON.stringify({ filename }),
-                            headers: { 'Content-Type': 'application/json' }
-                        });
-                        if (response.ok) {
-                            showToast('Partner removed.');
-                            iframe.contentWindow.location.reload();
-                        } else { throw new Error('Delete failed'); }
-                    } catch (err) { alert('Error: ' + err.message); }
-                };
-            });
-        });
-    } 
-    // Case 2: Script is running directly on the page (inside iframe or direct URL)
-    else {
-        document.addEventListener('contextmenu', (e) => {
-            const target = e.target.closest('[msgid], [imgid], [vidid]');
-            if (!target) return;
-            e.preventDefault();
-            currentElement = target;
-            showEditorPopup(target, e);
-        });
-
-        // Add Local Partner Listeners
-        const addTrigger = document.getElementById('add-partner-trigger');
-        const uploadInput = document.getElementById('partner-upload-input');
-        if (addTrigger && uploadInput) {
-            addTrigger.onclick = () => uploadInput.click();
-            uploadInput.onchange = async () => {
-                const fd = new FormData();
-                fd.append('file', uploadInput.files[0]);
-                const response = await fetch('/upload_partner.php', { method: 'POST', body: fd });
-                if (response.ok) location.reload();
-            };
-        }
-        
-        document.querySelectorAll('.delete-partner-btn').forEach(btn => {
-            btn.onclick = async (e) => {
-                e.stopPropagation();
-                if (!confirm('Are you sure?')) return;
-                const filename = btn.getAttribute('data-filename');
-                const response = await fetch('/delete_partner.php', {
-                    method: 'POST',
-                    body: JSON.stringify({ filename }),
-                    headers: { 'Content-Type': 'application/json' }
-                });
-                if (response.ok) location.reload();
-            };
-        });
+    // Add Local Partner Listeners
+    const addTrigger = document.getElementById('add-partner-trigger');
+    const uploadInput = document.getElementById('partner-upload-input');
+    if (addTrigger && uploadInput) {
+        addTrigger.onclick = () => uploadInput.click();
+        uploadInput.onchange = async () => {
+            const fd = new FormData();
+            fd.append('file', uploadInput.files[0]);
+            const response = await fetch('/upload_partner.php', { method: 'POST', body: fd });
+            if (response.ok) location.reload();
+        };
     }
+    
+    document.querySelectorAll('.delete-partner-btn').forEach(btn => {
+        btn.onclick = async (e) => {
+            e.stopPropagation();
+            if (!confirm('Are you sure?')) return;
+            const filename = btn.getAttribute('data-filename');
+            const response = await fetch('/delete_partner.php', {
+                method: 'POST',
+                body: JSON.stringify({ filename }),
+                headers: { 'Content-Type': 'application/json' }
+            });
+            if (response.ok) location.reload();
+        };
+    });
+
+    // Add Local Financial Listeners
+    const addFinTrigger = document.getElementById('add-financial-trigger');
+    const uploadFinInput = document.getElementById('financial-upload-input');
+    if (addFinTrigger && uploadFinInput) {
+        addFinTrigger.onclick = () => uploadFinInput.click();
+        uploadFinInput.onchange = async () => {
+            const fd = new FormData();
+            fd.append('file', uploadFinInput.files[0]);
+            const response = await fetch('/upload_financial.php', { method: 'POST', body: fd });
+            if (response.ok) location.reload();
+        };
+    }
+    
+    document.querySelectorAll('.delete-financial-btn').forEach(btn => {
+        btn.onclick = async (e) => {
+            e.stopPropagation();
+            if (!confirm('Are you sure?')) return;
+            const filename = btn.getAttribute('data-filename');
+            const response = await fetch('/delete_financial.php', {
+                method: 'POST',
+                body: JSON.stringify({ filename }),
+                headers: { 'Content-Type': 'application/json' }
+            });
+            if (response.ok) location.reload();
+        };
+    });
 
     function showEditorPopup(el, mouseEvent) {
         removePopup();
@@ -166,20 +120,20 @@
         `;
 
         popup.appendChild(card);
-        document.body.appendChild(popup);
+        window.top.document.body.appendChild(popup);
 
-        document.getElementById('popup-cancel').onclick = removePopup;
-        document.getElementById('popup-save').onclick = () => handleSave(el, msgid, imgid || vidid);
+        window.top.document.getElementById('popup-cancel').onclick = removePopup;
+        window.top.document.getElementById('popup-save').onclick = () => handleSave(el, msgid, imgid || vidid);
     }
 
     function removePopup() {
-        const p = document.getElementById('admin-editor-overlay');
+        const p = window.top.document.getElementById('admin-editor-overlay');
         if (p) p.remove();
     }
 
     async function handleSave(el, msgid, mediaId) {
-        const btn = document.getElementById('popup-save');
-        const status = document.getElementById('popup-status');
+        const btn = window.top.document.getElementById('popup-save');
+        const status = window.top.document.getElementById('popup-status');
         
         btn.disabled = true;
         btn.innerText = 'Saving...';
@@ -188,11 +142,11 @@
         status.innerText = 'Processing update...';
 
         try {
-            const lang = new URLSearchParams(iframe.src.split('?')[1]).get('lang') || 'en';
+            const lang = new URLSearchParams(window.location.search).get('lang') || 'en';
             let response;
 
             if (msgid) {
-                const content = document.getElementById('popup-content').value;
+                const content = window.top.document.getElementById('popup-content').value;
                 const fd = new FormData();
                 fd.append('msgid', msgid);
                 fd.append('lang', lang);
@@ -209,15 +163,22 @@
                     throw new Error(resJson.error || 'Failed to save');
                 }
             } else if (mediaId) {
-                const fileInput = document.getElementById('popup-file');
-                if (!fileInput.files[0]) {
+                const fileInput = window.top.document.getElementById('popup-file');
+                const file = fileInput.files[0];
+                if (!file) {
                     throw new Error("Please select a file.");
+                }
+
+                const isVideo = !el.hasAttribute('imgid');
+                const maxSize = isVideo ? 500 * 1024 * 1024 : 10 * 1024 * 1024;
+                if (file.size > maxSize) {
+                    throw new Error(`File is too large. Maximum size is ${isVideo ? '500MB' : '10MB'}.`);
                 }
 
                 const fd = new FormData();
                 fd.append('media_id', mediaId);
-                fd.append('type', el.hasAttribute('imgid') ? 'image' : 'video');
-                fd.append('file', fileInput.files[0]);
+                fd.append('type', isVideo ? 'video' : 'image');
+                fd.append('file', file);
 
                 response = await fetch('/update_media.php', { method: 'POST', body: fd });
                 const result = await response.json();

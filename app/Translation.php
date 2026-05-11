@@ -74,10 +74,11 @@ class Translation {
                     ? 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjQwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMzMzIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZpbGw9IiM2NjYiIGZvbnQtc2l6ZT0iMjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPm1pc3NpbmcgaW1hZ2U8L3RleHQ+PC9zdmc+' 
                     : '');
         
-        $idAttr = ($type === 'video') ? "vidid=\"$mediaId\"" : "imgid=\"$mediaId\"";
+        $safeMediaId = htmlspecialchars($mediaId);
+        $idAttr = ($type === 'video') ? "vidid=\"$safeMediaId\"" : "imgid=\"$safeMediaId\"";
         
         if ($isAdmin) {
-            return "src=\"" . htmlspecialchars($src) . "\" " . htmlspecialchars($idAttr);
+            return "src=\"" . htmlspecialchars($src) . "\" " . $idAttr;
         }
         return "src=\"" . htmlspecialchars($src) . "\"";
     }
