@@ -11,7 +11,8 @@ class Database {
     private function __construct() {
         // --- Environment Detection ---
         $isDocker = file_exists('/.dockerenv');
-        $isProduction = ($_SERVER['HTTP_HOST'] !== 'localhost' && $_SERVER['HTTP_HOST'] !== '127.0.0.1' && !str_contains($_SERVER['HTTP_HOST'], '.test'));
+        $hostName = explode(':', $_SERVER['HTTP_HOST'] ?? 'localhost')[0];
+        $isProduction = !$isDocker && ($hostName !== 'localhost' && $hostName !== '127.0.0.1' && !str_contains($hostName, '.test'));
 
         // Default settings (Development/Local)
         $host = $isDocker ? 'mysql' : '127.0.0.1';

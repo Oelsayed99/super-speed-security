@@ -162,9 +162,9 @@ INSERT INTO translations (msgid, value_en, value_ar) VALUES
 -- Seed Media Data (Updated with New Logo)
 TRUNCATE TABLE media;
 INSERT INTO media (media_id, type, src) VALUES
-('site-logo', 'image', '/assets/img/logo.png'),
-('footer-logo', 'image', '/assets/img/logo.png'),
-('hero-video', 'video', 'https://storage.googleapis.com/a1aa/video/security_ops.mp4'),
+('site-logo', 'image', '/assets/img/logo-04.svg'),
+('footer-logo', 'image', '/assets/img/logo-04.svg'),
+('hero-video', 'video', '/storage/uploads/videos/Security_Operation_Cinematic_Video.mp4'),
 ('home-intro-img', 'image', 'https://lh3.googleusercontent.com/aida-public/AB6AXuC3ROGwaR3PESoP_ZEp_Tfl_FZKUYui1LKWaToPKsvKilhNd6Aq71m3gN8LzmIAK8fDahsVcVYgZBcX8h7eoLrdCfp7c8weCIAMT_gtzrpirt72uuuqSw_9nPIpQAkZuQKm211euHfemu4Kt0lOktN7FSzXVVil8QPzoEApS-ZPkENI_LfzcBvJCFuehIWvuOf12f0xRzV1xFvjx-npIPAJFBg_u4D0rHg09F8nEhhhRtIUisZlK97hrKThgIPbPI0eYRP5Wu3fjg'),
 ('services-hero-img', 'image', 'https://lh3.googleusercontent.com/aida-public/AB6AXuBQg3RqQdhESMvsjLtr-4TyDj4-F_kAZOb-p3cmU5y9a2PGK43CZLp1lpkfSObnx-daQeyE4TJ7pJoh808A7qGI9dDZp1VMaWK08zvCICHHxL5Azx-evtUqGa3jUCdPIjv85eOL89GzhOxgYvMGQ9l2S8VV7K_3plFTbc564LfDjEGFibsHberInxHDAseWgSo6mdFQ64gESB4hxyzi5uxQvMF0AlXl7AaDLJwqIzFG3YtWwAUFo5A1NTz9Oct2WXrL1IXDwpav9w'),
 ('svc-personnel-img', 'image', 'https://lh3.googleusercontent.com/aida-public/AB6AXuBasnTwbiRSUwt5xxuyI5JoFbyiyJQ4oFpDkQXGpbx2X_X0fyKYbkmsd005r_GAKTtQJbzNlLtHcr1Mg0UuTzsEXWREGGMhbtSi3ekHCSlU_mm5TisKbQpOg7svct4_jmFNo4veyqf7DyRnJNVu-kbXqAVSxiamniSlUdhTg_EN8hQdht-2GxU1dKVfs6fEneqxoJYop8fZbqOWA6pLZQOJvegJH0PqUFQcaOZVQjcR8zkGvQuXv3aYvlnnQgOJ_p6mD-M6R5pyng'),
