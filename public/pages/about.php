@@ -12,7 +12,7 @@
     <div class="relative max-w-7xl mx-auto px-8 w-full py-20">
         <div class="max-w-2xl">
             <span class="inline-block px-4 py-1 rounded-full bg-primary/10 text-primary-container text-xs font-bold uppercase tracking-widest mb-6"><?= translate('about-hero-badge', 'Established Authority') ?></span>
-            <h1 class="font-headline text-5xl md:text-7xl font-extrabold text-white leading-tight tracking-tighter mb-6">
+            <h1 class="font-headline text-5xl md:text-7xl font-extrabold text-white leading-[1.3] tracking-tighter mb-6">
                 <?= translate('about-hero-title', 'Architects of <br/><span class="text-primary-container">Absolute Security.</span>') ?>
             </h1>
             <p class="text-zinc-400 text-lg md:text-xl leading-relaxed font-light">

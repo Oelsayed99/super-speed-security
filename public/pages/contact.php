@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_contact'])) {
         <div class="grid md:grid-cols-2 gap-12 items-end">
             <div class="space-y-6">
                 <span class="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest"><?= translate('contact-hero-badge', 'Connect with Experts') ?></span>
-                <h1 class="text-5xl md:text-6xl font-extrabold font-headline tracking-tighter leading-tight text-zinc-900 dark:text-white">
+                <h1 class="text-5xl md:text-6xl font-extrabold font-headline tracking-tighter leading-[1.3] text-zinc-900 dark:text-white">
                     <?= translate('contact-hero-title', 'Contact us to discuss your security needs.') ?>
                 </h1>
             </div>

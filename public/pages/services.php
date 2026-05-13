@@ -12,7 +12,7 @@
             <span class="inline-block px-4 py-1.5 rounded-full bg-red-600/10 border border-red-600/20 text-red-500 font-bold text-xs tracking-widest uppercase mb-6">
                 <?= translate('services-badge', 'Elite Protection Services') ?>
             </span>
-            <h1 class="text-5xl md:text-7xl font-extrabold text-white leading-[1.1] mb-6 tracking-tighter">
+            <h1 class="text-5xl md:text-7xl font-extrabold text-white leading-[1.3] mb-6 tracking-tighter">
                 <?= translate('services-hero-title', 'Architectural <br/><span class="text-transparent bg-clip-text brand-gradient">Vault of Security</span>') ?>
             </h1>
             <p class="text-zinc-300 text-lg leading-relaxed max-w-xl">
