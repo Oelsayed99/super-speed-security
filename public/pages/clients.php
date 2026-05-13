@@ -30,7 +30,7 @@
             <h3 class="text-sm font-bold text-zinc-400 uppercase tracking-[0.3em] mb-12 text-center"><?= translate('roster-label', 'Strategic Alliances') ?></h3>
             
             <div class="partners-grid-wrapper">
-                <div class="partners-grid">
+                <div class="partners-grid" id="partners-grid">
                     <?php if ($isAdmin): ?>
                         <!-- Add Partner Card -->
                         <div class="partner-card group border-dashed border-2 border-red-200 cursor-pointer hover:border-red-500 bg-red-50/10" id="add-partner-trigger">
@@ -45,18 +45,33 @@
                     <?php 
                         $partnerFolder = 'assets/img/partners/';
                         $partnerImgs = glob($partnerFolder . "*.{jpg,jpeg,png,webp,svg}", GLOB_BRACE);
+                        $orderFile = $partnerFolder . 'order.json';
                         
                         if (!empty($partnerImgs)) {
+                            // Sort based on order.json if it exists
+                            if (file_exists($orderFile)) {
+                                $order = json_decode(file_get_contents($orderFile), true);
+                                if (is_array($order)) {
+                                    usort($partnerImgs, function($a, $b) use ($order) {
+                                        $posA = array_search(basename($a), $order);
+                                        $posB = array_search(basename($b), $order);
+                                        if ($posA === false) $posA = 999;
+                                        if ($posB === false) $posB = 999;
+                                        return $posA <=> $posB;
+                                    });
+                                }
+                            }
+
                             foreach($partnerImgs as $img): 
                                 $basename = basename($img);
                     ?>
-                        <div class="partner-card group relative">
+                        <div class="partner-card group relative" data-filename="<?= $basename ?>">
                             <?php if ($isAdmin): ?>
                                 <button class="delete-partner-btn absolute top-2 right-2 p-1 bg-red-600 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity z-20 hover:scale-110" data-filename="<?= $basename ?>">
                                     <span class="material-symbols-outlined text-sm">close</span>
                                 </button>
                             <?php endif; ?>
-                            <img src="<?= $img ?>" class="max-h-full max-w-full object-contain grayscale opacity-30 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500" alt="Partner Logo">
+                            <img src="<?= $img ?>" class="max-h-full max-w-full object-contain grayscale opacity-30 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 cursor-move" alt="Partner Logo">
                         </div>
                     <?php 
                             endforeach; 
@@ -77,3 +92,42 @@
         </div>
     </div>
 </section>
+
+<?php if ($isAdmin): ?>
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var el = document.getElementById('partners-grid');
+        if (el) {
+            Sortable.create(el, {
+                animation: 150,
+                draggable: ".partner-card",
+                filter: "#add-partner-trigger", // don't make the add button draggable
+                onEnd: function (evt) {
+                    var items = el.querySelectorAll('.partner-card');
+                    var newOrder = [];
+                    items.forEach(function(item) {
+                        if (item.id !== 'add-partner-trigger') {
+                            var filename = item.getAttribute('data-filename');
+                            if(filename) newOrder.push(filename);
+                        }
+                    });
+
+                    fetch('/update_partner_order.php', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ order: newOrder })
+                    }).then(res => res.json()).then(data => {
+                        if(!data.success) {
+                            console.error('Failed to update order');
+                            alert('Could not save the new order.');
+                        }
+                    }).catch(err => {
+                        console.error('Error updating order', err);
+                    });
+                }
+            });
+        }
+    });
+</script>
+<?php endif; ?>
