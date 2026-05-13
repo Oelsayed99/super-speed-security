@@ -27,10 +27,10 @@
             </p>
         </div>
         <div class="flex flex-wrap justify-center gap-6 pt-4">
-            <a href="index.php?page=services" class="brand-gradient px-10 py-5 rounded-xl font-bold text-lg hover:scale-105 transition-all shadow-2xl flex items-center gap-2">
+            <a href="<?= url('services') ?>" class="brand-gradient px-10 py-5 rounded-xl font-bold text-lg hover:scale-105 transition-all shadow-2xl flex items-center gap-2">
                 <span><?= translate('btn-services', 'Our Services') ?></span>
             </a>
-            <a href="index.php?page=contact" class="bg-white/10 backdrop-blur-md border border-white/30 px-10 py-5 rounded-xl font-bold text-lg hover:bg-white/20 transition-all flex items-center gap-2">
+            <a href="<?= url('contact') ?>" class="bg-white/10 backdrop-blur-md border border-white/30 px-10 py-5 rounded-xl font-bold text-lg hover:bg-white/20 transition-all flex items-center gap-2">
                 <span><?= translate('btn-contact', 'Contact Us') ?></span>
             </a>
         </div>
@@ -59,7 +59,7 @@
                 </p>
             </div>
             <div class="flex flex-wrap gap-4">
-                <a href="index.php?page=about" class="brand-gradient text-white px-8 py-4 rounded-xl font-bold flex items-center gap-2 shadow-lg hover:translate-y-[-2px] transition-all">
+                <a href="<?= url('about') ?>" class="brand-gradient text-white px-8 py-4 rounded-xl font-bold flex items-center gap-2 shadow-lg hover:translate-y-[-2px] transition-all">
                     <?= translate('btn-learn-more', 'Learn More') ?>
                     <span class="material-symbols-outlined">arrow_forward</span>
                 </a>
@@ -243,7 +243,7 @@
             <h2 class="text-4xl md:text-6xl font-headline font-extrabold tracking-tight"><?= translate('home-cta-title', 'Secure Your Business Today') ?></h2>
             <p class="text-xl text-white/80 max-w-2xl mx-auto"><?= translate('home-cta-desc', 'Partner with FORTRESS Security for the ultimate peace of mind.') ?></p>
             <div class="flex flex-wrap justify-center gap-6 pt-4">
-                <a href="index.php?page=contact" class="bg-white text-red-600 px-10 py-5 rounded-xl font-bold text-lg hover:bg-zinc-100 transition-colors shadow-xl">
+                <a href="<?= url('contact') ?>" class="bg-white text-red-600 px-10 py-5 rounded-xl font-bold text-lg hover:bg-zinc-100 transition-colors shadow-xl">
                     <?= translate('btn-consult', 'Request a Consultation') ?>
                 </a>
             </div>

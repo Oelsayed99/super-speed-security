@@ -110,10 +110,10 @@
         <div class="max-w-3xl">
             <h2 class="font-headline text-4xl font-bold text-white mb-8"><?= translate('about-cta-title', 'Ready to secure your operations with Super Speed?') ?></h2>
             <div class="flex flex-wrap gap-4">
-                <a href="?page=services" class="brand-gradient px-8 py-4 rounded-md text-white font-bold text-sm tracking-wide uppercase hover:scale-105 transition-transform flex items-center gap-2">
+                <a href="<?= url('services') ?>" class="brand-gradient px-8 py-4 rounded-md text-white font-bold text-sm tracking-wide uppercase hover:scale-105 transition-transform flex items-center gap-2">
                     <?= translate('about-cta-btn-1', 'Our Services') ?> <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
                 </a>
-                <a href="?page=contact" class="border border-white/20 px-8 py-4 rounded-md text-white font-bold text-sm tracking-wide uppercase hover:bg-white/10 transition-colors">
+                <a href="<?= url('contact') ?>" class="border border-white/20 px-8 py-4 rounded-md text-white font-bold text-sm tracking-wide uppercase hover:bg-white/10 transition-colors">
                     <?= translate('about-cta-btn-2', 'Contact Us') ?>
                 </a>
             </div>
