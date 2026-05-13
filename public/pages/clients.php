@@ -6,7 +6,7 @@
                     <div class="inline-block px-4 py-1 bg-surface-container-high rounded-full">
                         <span class="text-[0.65rem] font-bold tracking-[0.2em] uppercase text-tertiary"><?= translate('clients-ecosystem', 'Our Ecosystem') ?></span>
                     </div>
-                    <h1 class="text-5xl lg:text-7xl font-extrabold leading-[1.3] tracking-tighter <?= $lang === 'ar' ? 'font-headline' : '' ?>">
+                    <h1 class="text-5xl lg:text-7xl font-extrabold leading-[1.5] tracking-tighter <?= $lang === 'ar' ? 'font-headline' : '' ?>">
                         <?php if ($lang === 'en'): ?>
                             <?= translate('clients-hero-title', 'The Trust of <br/><span class="text-transparent bg-clip-text brand-gradient">Industry Leaders.</span>') ?>
                         <?php else: ?>

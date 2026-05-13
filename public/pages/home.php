@@ -17,7 +17,7 @@
     <!-- Content Overlay -->
     <div class="relative z-10 max-w-4xl px-8 text-white space-y-8 animate-fade-in-up">
         <div class="space-y-4">
-            <h1 class="font-headline font-extrabold text-5xl md:text-7xl leading-[1.3] tracking-tight text-white/90">
+            <h1 class="font-headline font-extrabold text-5xl md:text-7xl leading-[1.5] tracking-tight text-white/90">
                 <?= translate('hero-title', 'Your Safety. Our Mission.') ?>
             </h1>
         </div>
@@ -51,7 +51,7 @@
                 <?= translate('badge-elite', 'Elite Security') ?>
             </div>
             <div>
-                <h2 class="font-headline font-extrabold text-4xl md:text-5xl leading-[1.3] tracking-tight text-on-surface mb-2">
+                <h2 class="font-headline font-extrabold text-4xl md:text-5xl leading-[1.5] tracking-tight text-on-surface mb-2">
                     <?= translate('home-intro-title', 'The Standard of <span class="text-primary">Excellence.</span>') ?>
                 </h2>
                 <p class="text-lg text-zinc-600">
