@@ -1,0 +1,28 @@
+# Environment / secrets — never commit
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Uploaded media (runtime content, not source)
+public/storage/uploads/images/*
+public/storage/uploads/videos/*
+!public/storage/uploads/images/.gitkeep
+!public/storage/uploads/videos/.gitkeep
+
+# Archives and scratch files
+*.zip
+*.tar.gz
+*.sql.bak
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.log
+.idea/
+.vscode/
+
+# NOTE: vendor/ is intentionally COMMITTED. Deployment to the client's Plesk
+# server pulls this repository directly and does not run `composer install`.
+# Before untracking vendor/, confirm the deploy step runs composer first.
